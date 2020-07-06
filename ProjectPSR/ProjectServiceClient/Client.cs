@@ -17,7 +17,7 @@ namespace ProjectServiceClient
     }
 
 
-    static class Program
+    static class Client
     {
         [STAThread]
         static void Main()
