@@ -46,10 +46,5 @@ namespace ProjectServiceClient
             else 
                 MessageBox.Show("Proszę wybrać oba pliki w celu porównania", "Błąd!", MessageBoxButtons.OK, MessageBoxIcon.Error);            
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
