@@ -12,21 +12,20 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DiffFilesInterfaceRef.IDiffFilesInterface", CallbackContract=typeof(ProjectServiceClient.DiffFilesInterfaceRef.IDiffFilesInterfaceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DiffFilesInterfaceRef.IDiffFilesInterface")]
     public interface IDiffFilesInterface {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDiffFilesInterface/exampleOperationForStartHost")]
-        void exampleOperationForStartHost();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/calculateLevenhstein", ReplyAction="http://tempuri.org/IDiffFilesInterface/calculateLevenhsteinResponse")]
+        double calculateLevenhstein(string s, string t);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDiffFilesInterface/exampleOperationForStartHost")]
-        System.Threading.Tasks.Task exampleOperationForStartHostAsync();
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IDiffFilesInterfaceCallback {
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/calculateLevenhstein", ReplyAction="http://tempuri.org/IDiffFilesInterface/calculateLevenhsteinResponse")]
+        System.Threading.Tasks.Task<double> calculateLevenhsteinAsync(string s, string t);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDiffFilesInterface/exampleStartCallback")]
-        void exampleStartCallback(double result);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/percentCalculate", ReplyAction="http://tempuri.org/IDiffFilesInterface/percentCalculateResponse")]
+        double percentCalculate(double distanceLevenhstein, double firstTextLenght);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/percentCalculate", ReplyAction="http://tempuri.org/IDiffFilesInterface/percentCalculateResponse")]
+        System.Threading.Tasks.Task<double> percentCalculateAsync(double distanceLevenhstein, double firstTextLenght);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -35,34 +34,41 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class DiffFilesInterfaceClient : System.ServiceModel.DuplexClientBase<ProjectServiceClient.DiffFilesInterfaceRef.IDiffFilesInterface>, ProjectServiceClient.DiffFilesInterfaceRef.IDiffFilesInterface {
+    public partial class DiffFilesInterfaceClient : System.ServiceModel.ClientBase<ProjectServiceClient.DiffFilesInterfaceRef.IDiffFilesInterface>, ProjectServiceClient.DiffFilesInterfaceRef.IDiffFilesInterface {
         
-        public DiffFilesInterfaceClient(System.ServiceModel.InstanceContext callbackInstance) : 
-                base(callbackInstance) {
+        public DiffFilesInterfaceClient() {
         }
         
-        public DiffFilesInterfaceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
-                base(callbackInstance, endpointConfigurationName) {
+        public DiffFilesInterfaceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
         }
         
-        public DiffFilesInterfaceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        public DiffFilesInterfaceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public DiffFilesInterfaceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        public DiffFilesInterfaceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public DiffFilesInterfaceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, binding, remoteAddress) {
+        public DiffFilesInterfaceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
         }
         
-        public void exampleOperationForStartHost() {
-            base.Channel.exampleOperationForStartHost();
+        public double calculateLevenhstein(string s, string t) {
+            return base.Channel.calculateLevenhstein(s, t);
         }
         
-        public System.Threading.Tasks.Task exampleOperationForStartHostAsync() {
-            return base.Channel.exampleOperationForStartHostAsync();
+        public System.Threading.Tasks.Task<double> calculateLevenhsteinAsync(string s, string t) {
+            return base.Channel.calculateLevenhsteinAsync(s, t);
+        }
+        
+        public double percentCalculate(double distanceLevenhstein, double firstTextLenght) {
+            return base.Channel.percentCalculate(distanceLevenhstein, firstTextLenght);
+        }
+        
+        public System.Threading.Tasks.Task<double> percentCalculateAsync(double distanceLevenhstein, double firstTextLenght) {
+            return base.Channel.percentCalculateAsync(distanceLevenhstein, firstTextLenght);
         }
     }
 }

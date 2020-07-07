@@ -7,16 +7,13 @@ using System.Text;
 
 namespace ProjectServiceLibary
 {
-    [ServiceContract (SessionMode = SessionMode.Required, CallbackContract = typeof(IDiffFilesInterfaceCallback))]
+    [ServiceContract]
     public interface IDiffFilesInterface
     {
-        [OperationContract(IsOneWay = true)]
-        void exampleOperationForStartHost();
-    }
+        [OperationContract]
+        double calculateLevenhstein(String s, String t);
 
-    public interface IDiffFilesInterfaceCallback
-    {
-        [OperationContract(IsOneWay = true)]
-        void exampleStartCallback(double result);
+        [OperationContract]
+        double percentCalculate(double distanceLevenhstein, double firstTextLenght);
     }
 }

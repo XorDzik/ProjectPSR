@@ -10,11 +10,15 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows;
+using ProjectServiceClient.DiffFilesInterfaceRef;
+using System.ServiceModel;
 
 namespace ProjectServiceClient
 {
     public partial class Form1 : Form
     {
+
+        DiffFilesInterfaceRef.DiffFilesInterfaceClient client = new DiffFilesInterfaceRef.DiffFilesInterfaceClient();
         public Form1()
         {
             InitializeComponent();
@@ -37,13 +41,15 @@ namespace ProjectServiceClient
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if((txtEditor1.Text.Length > 0)&&(txtEditor2.Text.Length > 0)){
-               label1.Text = "Tutaj wyskoczy zgodność pliku";
-            }
-            else {
-                MessageBox.Show("Proszę wybrać oba pliki w celu porównania", "Błąd!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+            if ((txtEditor1.Text.Length > 0) && (txtEditor2.Text.Length > 0))
+                label1.Text = "Procent zgodności drugiego pliku z pierwszym = " + client.calculateLevenhstein(txtEditor1.Text, txtEditor2.Text).ToString() + "%";           
+            else 
+                MessageBox.Show("Proszę wybrać oba pliki w celu porównania", "Błąd!", MessageBoxButtons.OK, MessageBoxIcon.Error);            
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
