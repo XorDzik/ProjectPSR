@@ -27,6 +27,8 @@ namespace ProjectServiceClient
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+            txtEditor1.ReadOnly = true;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
                 txtEditor1.Text = File.ReadAllText(openFileDialog.FileName);
 
@@ -35,6 +37,8 @@ namespace ProjectServiceClient
         private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+            txtEditor2.ReadOnly = true;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
                 txtEditor2.Text = File.ReadAllText(openFileDialog.FileName);
         }
