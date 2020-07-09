@@ -48,9 +48,11 @@
             // 
             // txtEditor1
             // 
+            this.txtEditor1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEditor1.Location = new System.Drawing.Point(12, 63);
             this.txtEditor1.Multiline = true;
             this.txtEditor1.Name = "txtEditor1";
+            this.txtEditor1.ReadOnly = true;
             this.txtEditor1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtEditor1.Size = new System.Drawing.Size(413, 300);
             this.txtEditor1.TabIndex = 1;
@@ -60,6 +62,7 @@
             this.txtEditor2.Location = new System.Drawing.Point(431, 63);
             this.txtEditor2.Multiline = true;
             this.txtEditor2.Name = "txtEditor2";
+            this.txtEditor2.ReadOnly = true;
             this.txtEditor2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtEditor2.Size = new System.Drawing.Size(413, 300);
             this.txtEditor2.TabIndex = 3;

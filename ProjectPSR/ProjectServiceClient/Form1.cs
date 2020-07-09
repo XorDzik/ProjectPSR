@@ -29,6 +29,7 @@ namespace ProjectServiceClient
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text files (*.txt)|*.txt";
             txtEditor1.ReadOnly = true;
+            txtEditor1.BackColor = SystemColors.Window;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
                 txtEditor1.Text = File.ReadAllText(openFileDialog.FileName);
 
@@ -39,6 +40,7 @@ namespace ProjectServiceClient
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text files (*.txt)|*.txt";
             txtEditor2.ReadOnly = true;
+            txtEditor2.BackColor = SystemColors.Window;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
                 txtEditor2.Text = File.ReadAllText(openFileDialog.FileName);
         }
