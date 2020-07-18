@@ -40,7 +40,6 @@ namespace ProjectServiceLibary
                 }
             }
             return distanceLevenhstein[firstTextLenght, secondTextLenght];
-            //return percentCalculate(distanceLevenhstein[firstTextLenght, secondTextLenght], firstTextLenght);
         }
 
         public double percentCalculate(double distanceLevenhstein, double firstTextLenght)
