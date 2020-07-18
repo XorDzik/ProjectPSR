@@ -39,7 +39,8 @@ namespace ProjectServiceLibary
                     distanceLevenhstein[i - 1, j - 1] + cost));
                 }
             }
-            return percentCalculate(distanceLevenhstein[firstTextLenght, secondTextLenght], firstTextLenght);
+            return distanceLevenhstein[firstTextLenght, secondTextLenght];
+            //return percentCalculate(distanceLevenhstein[firstTextLenght, secondTextLenght], firstTextLenght);
         }
 
         public double percentCalculate(double distanceLevenhstein, double firstTextLenght)
