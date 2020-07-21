@@ -19,13 +19,12 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8001/DiffFilesInterfaceImpl/" Protocol="http" SourceId="1" />
+    <MetadataSource Address="net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="DiffFilesInterfaceImpl.wsdl" MetadataType="Wsdl" ID="6389e7cb-8bbc-4ef0-b6b7-247f83f073ed" SourceId="1" SourceUrl="http://localhost:8001/DiffFilesInterfaceImpl/?wsdl" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="1d9ca461-c458-4cda-8846-266def888dc9" SourceId="1" SourceUrl="http://localhost:8001/DiffFilesInterfaceImpl/?xsd=xsd1" />
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="b19d8912-47b4-47ba-8969-309a365e420a" SourceId="1" SourceUrl="http://localhost:8001/DiffFilesInterfaceImpl/?xsd=xsd0" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="47aea72c-740e-4416-9160-e8d6f1df81bd" SourceId="1" SourceUrl="http://localhost:8001/DiffFilesInterfaceImpl/?disco" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="c1e43db8-c271-412b-8f33-30c8794871aa" SourceId="1" SourceUrl="net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="6cf907c5-911d-42a0-adf0-cef6db7b03aa" SourceId="1" SourceUrl="net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="88bbe285-ddf0-4706-92ae-82e448a92a0e" SourceId="1" SourceUrl="net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

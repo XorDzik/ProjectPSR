@@ -13,17 +13,23 @@ namespace ProjectServiceHost
     {
         static void Main(string[] args)
         {
-            Uri baseAddress = new Uri("http://localhost:8001/DiffFilesInterfaceImpl/");
-            ServiceHost selfHost = new ServiceHost(typeof(DiffFilesInterfaceImpl), baseAddress);
+            var uris = new Uri[1];
+            string adr = "net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl";
+            uris[0] = new Uri(adr);
+           // Uri baseAddress = new Uri("http://localhost:8001/DiffFilesInterfaceImpl/");
+            ServiceHost selfHost = new ServiceHost(typeof(DiffFilesInterfaceImpl), uris);
 
             try
             {
-                selfHost.AddServiceEndpoint(typeof(IDiffFilesInterface), new WSDualHttpBinding(), "DiffFilesService");
+                var binding = new NetTcpBinding(SecurityMode.None);
+                selfHost.AddServiceEndpoint(typeof(IDiffFilesInterface), binding, "DiffFilesService");
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
-                smb.HttpGetEnabled = true;
+                smb.HttpGetEnabled = false;
 
-                selfHost.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;
-                selfHost.Description.Behaviors.Add(smb);
+              
+
+              //  selfHost.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;
+              //  selfHost.Description.Behaviors.Add(smb);
 
                 selfHost.Open();
                 Console.WriteLine("Host working....");
