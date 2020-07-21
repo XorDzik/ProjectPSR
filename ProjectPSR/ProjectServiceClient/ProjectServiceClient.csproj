@@ -72,11 +72,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Connected Services\DiffFilesInterfaceRef\DiffFilesInterfaceImpl.wsdl" />
-    <None Include="Connected Services\DiffFilesInterfaceRef\item.xsd">
+    <None Include="Connected Services\DiffFilesInterfaceRef\service.wsdl" />
+    <None Include="Connected Services\DiffFilesInterfaceRef\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DiffFilesInterfaceRef\item1.xsd">
+    <None Include="Connected Services\DiffFilesInterfaceRef\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -97,9 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DiffFilesInterfaceRef\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\DiffFilesInterfaceRef\item.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\DiffFilesInterfaceRef\configuration91.svcinfo" />
