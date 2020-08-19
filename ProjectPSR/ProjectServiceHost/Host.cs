@@ -14,7 +14,7 @@ namespace ProjectServiceHost
         static void Main(string[] args)
         {
             var uris = new Uri[1];
-            string adr = "net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl";
+            string adr = "net.tcp://192.168.8.102:8080/DiffFilesInterfaceImpl";
             uris[0] = new Uri(adr);
            // Uri baseAddress = new Uri("http://localhost:8001/DiffFilesInterfaceImpl/");
             ServiceHost selfHost = new ServiceHost(typeof(DiffFilesInterfaceImpl), uris);
@@ -22,10 +22,11 @@ namespace ProjectServiceHost
             try
             {
                 var binding = new NetTcpBinding(SecurityMode.None);
+                
                 selfHost.AddServiceEndpoint(typeof(IDiffFilesInterface), binding, "DiffFilesService");
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = false;
-
+               
               
 
               //  selfHost.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;

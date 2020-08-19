@@ -15,11 +15,11 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DiffFilesInterfaceRef.IDiffFilesInterface")]
     public interface IDiffFilesInterface {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/calculateLevenhstein", ReplyAction="http://tempuri.org/IDiffFilesInterface/calculateLevenhsteinResponse")]
-        double calculateLevenhstein(string s, string t);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter", ReplyAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterResponse")]
+        int compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/calculateLevenhstein", ReplyAction="http://tempuri.org/IDiffFilesInterface/calculateLevenhsteinResponse")]
-        System.Threading.Tasks.Task<double> calculateLevenhsteinAsync(string s, string t);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter", ReplyAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterResponse")]
+        System.Threading.Tasks.Task<int> compareFileLetterByLetterAsync(string firstFileName, string secondFileName, int pattern);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/percentCalculate", ReplyAction="http://tempuri.org/IDiffFilesInterface/percentCalculateResponse")]
         double percentCalculate(double distanceLevenhstein, double firstTextLenght);
@@ -55,12 +55,12 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
                 base(binding, remoteAddress) {
         }
         
-        public double calculateLevenhstein(string s, string t) {
-            return base.Channel.calculateLevenhstein(s, t);
+        public int compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern) {
+            return base.Channel.compareFileLetterByLetter(firstFileName, secondFileName, pattern);
         }
         
-        public System.Threading.Tasks.Task<double> calculateLevenhsteinAsync(string s, string t) {
-            return base.Channel.calculateLevenhsteinAsync(s, t);
+        public System.Threading.Tasks.Task<int> compareFileLetterByLetterAsync(string firstFileName, string secondFileName, int pattern) {
+            return base.Channel.compareFileLetterByLetterAsync(firstFileName, secondFileName, pattern);
         }
         
         public double percentCalculate(double distanceLevenhstein, double firstTextLenght) {

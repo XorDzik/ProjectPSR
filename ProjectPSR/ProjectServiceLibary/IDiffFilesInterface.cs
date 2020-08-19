@@ -11,7 +11,7 @@ namespace ProjectServiceLibary
     public interface IDiffFilesInterface
     {
         [OperationContract]
-        double calculateLevenhstein(String s, String t);
+        int compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern);
 
         [OperationContract]
         double percentCalculate(double distanceLevenhstein, double firstTextLenght);

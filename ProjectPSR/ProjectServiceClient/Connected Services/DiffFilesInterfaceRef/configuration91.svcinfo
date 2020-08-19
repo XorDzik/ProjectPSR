@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="SwhvF+NpTYTz910xJDgG145hUKq/OtQ0f8+t8K+h77g=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="50rqA4GYMRW+QG7jRi9s+OA7zT3HT1GxznY0DJRfv6U=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IDiffFilesInterface">
       <properties>
@@ -239,10 +239,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IDiffFilesInterface" contract="DiffFilesInterfaceRef.IDiffFilesInterface" bindingType="netTcpBinding" address="net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl" bindingConfiguration="NetTcpBinding_IDiffFilesInterface">
+    <endpoint name="NetTcpBinding_IDiffFilesInterface" contract="DiffFilesInterfaceRef.IDiffFilesInterface" bindingType="netTcpBinding" address="net.tcp://192.168.8.102:8080/DiffFilesInterfaceImpl" bindingConfiguration="NetTcpBinding_IDiffFilesInterface">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl</serializedValue>
+          <serializedValue>net.tcp://192.168.8.102:8080/DiffFilesInterfaceImpl</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -269,7 +269,7 @@
           <serializedValue>System.ServiceModel.Configuration.UserPrincipalNameElement</serializedValue>
         </property>
         <property path="/identity/userPrincipalName/value" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>DESKTOP-5BNAJM2\Adrian</serializedValue>
+          <serializedValue>DESKTOP-5AHI0I2\piotr</serializedValue>
         </property>
         <property path="/identity/servicePrincipalName" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.ServicePrincipalNameElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.ServicePrincipalNameElement</serializedValue>
@@ -324,10 +324,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IDiffFilesInterface1" contract="DiffFilesInterfaceRef.IDiffFilesInterface" bindingType="netTcpBinding" address="net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl/DiffFilesService" bindingConfiguration="NetTcpBinding_IDiffFilesInterface1">
+    <endpoint name="NetTcpBinding_IDiffFilesInterface1" contract="DiffFilesInterfaceRef.IDiffFilesInterface" bindingType="netTcpBinding" address="net.tcp://192.168.8.102:8080/DiffFilesInterfaceImpl/DiffFilesService" bindingConfiguration="NetTcpBinding_IDiffFilesInterface1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl/DiffFilesService</serializedValue>
+          <serializedValue>net.tcp://192.168.8.102:8080/DiffFilesInterfaceImpl/DiffFilesService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

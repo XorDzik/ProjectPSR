@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Activation;
 using System.Text;
 
 namespace ProjectServiceLibary
@@ -11,36 +14,65 @@ namespace ProjectServiceLibary
     public class DiffFilesInterfaceImpl : IDiffFilesInterface
     {
         public const int ROUND_RESULT = 2; 
-        public double calculateLevenhstein(String firstText, String secondText)
+        public int compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern)
         {
-            int i, j;
-            int firstTextLenght, secondTextLenght, cost;
-            int[,] distanceLevenhstein;
+            int counter = 0;
 
-            firstTextLenght = firstText.Length;
-            secondTextLenght = secondText.Length;
+            char[] firstFileContent = File.ReadAllText(firstFileName).ToCharArray();
+            char[] secondFileContent = File.ReadAllText(secondFileName).ToCharArray();
 
-            distanceLevenhstein = new int[firstTextLenght + 1, secondTextLenght + 1];
+            List<string> firstFileContentList = new List<string>();
+            List<string> secondFileContentList = new List<string>();
 
-            for (i = 0; i <= firstTextLenght; i++)
-                distanceLevenhstein[i, 0] = i;
-            for (j = 1; j <= secondTextLenght; j++)
-                distanceLevenhstein[0, j] = j;
+            string tmpStr = "";
+            int securityLength;
 
-            for (i = 1; i <= firstTextLenght; i++) {
-                for (j = 1; j <= secondTextLenght; j++) {
-                    if (firstText[i - 1] == secondText[j - 1])
-                        cost = 0;
-                    else
-                        cost = 1;
+            for (int i = 0; i < firstFileContent.Length; i++)
+            {
+                securityLength = pattern + i;
+                for (int j = i; j < securityLength; j++)
+                {
+                    if (securityLength <= firstFileContent.Length)
+                        tmpStr += firstFileContent[j];
+                }
+                firstFileContentList.Add(tmpStr);
 
-                    distanceLevenhstein[i, j] = Math.Min(distanceLevenhstein[i - 1, j] + 1,   
-                    Math.Min(distanceLevenhstein[i, j - 1] + 1,
-                    distanceLevenhstein[i - 1, j - 1] + cost));
+                if (securityLength >= firstFileContent.Length)
+                    break;
+
+                tmpStr = "";
+            }
+
+            tmpStr = "";
+            for (int i = 0; i < secondFileContent.Length; i++)
+            {
+                securityLength = pattern + i;
+                for (int j = i; j < securityLength; j++)
+                {
+                    if (securityLength <= secondFileContent.Length)
+                        tmpStr += secondFileContent[j];
+                }
+                secondFileContentList.Add(tmpStr);
+
+                if (securityLength >= firstFileContent.Length)
+                    break;
+
+                tmpStr = "";
+            }
+
+            foreach (string firstFileTxt in firstFileContentList)
+            {
+                foreach (string secondFileTxt in secondFileContentList)
+                {
+                    if (firstFileTxt == secondFileTxt)
+                        counter++;
                 }
             }
-            return distanceLevenhstein[firstTextLenght, secondTextLenght];
-        }
+
+            int howManyTheSameLetters = counter + pattern;
+            return howManyTheSameLetters;
+        } 
+       
 
         public double percentCalculate(double distanceLevenhstein, double firstTextLenght)
         {

@@ -49,11 +49,11 @@
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IDiffFilesInterface_calculateLevenhstein_InputMessage">
-    <wsdl:part name="parameters" element="tns:calculateLevenhstein" />
+  <wsdl:message name="IDiffFilesInterface_compareFileLetterByLetter_InputMessage">
+    <wsdl:part name="parameters" element="tns:compareFileLetterByLetter" />
   </wsdl:message>
-  <wsdl:message name="IDiffFilesInterface_calculateLevenhstein_OutputMessage">
-    <wsdl:part name="parameters" element="tns:calculateLevenhsteinResponse" />
+  <wsdl:message name="IDiffFilesInterface_compareFileLetterByLetter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:compareFileLetterByLetterResponse" />
   </wsdl:message>
   <wsdl:message name="IDiffFilesInterface_percentCalculate_InputMessage">
     <wsdl:part name="parameters" element="tns:percentCalculate" />
@@ -62,9 +62,9 @@
     <wsdl:part name="parameters" element="tns:percentCalculateResponse" />
   </wsdl:message>
   <wsdl:portType name="IDiffFilesInterface">
-    <wsdl:operation name="calculateLevenhstein">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/calculateLevenhstein" message="tns:IDiffFilesInterface_calculateLevenhstein_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDiffFilesInterface/calculateLevenhsteinResponse" message="tns:IDiffFilesInterface_calculateLevenhstein_OutputMessage" />
+    <wsdl:operation name="compareFileLetterByLetter">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter" message="tns:IDiffFilesInterface_compareFileLetterByLetter_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterResponse" message="tns:IDiffFilesInterface_compareFileLetterByLetter_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="percentCalculate">
       <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/percentCalculate" message="tns:IDiffFilesInterface_percentCalculate_InputMessage" />
@@ -75,8 +75,8 @@
     <wsp:PolicyReference URI="#NetTcpBinding_IDiffFilesInterface_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="calculateLevenhstein">
-      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/calculateLevenhstein" style="document" />
+    <wsdl:operation name="compareFileLetterByLetter">
+      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -98,8 +98,8 @@
     <wsp:PolicyReference URI="#NetTcpBinding_IDiffFilesInterface1_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="calculateLevenhstein">
-      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/calculateLevenhstein" style="document" />
+    <wsdl:operation name="compareFileLetterByLetter">
+      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -119,18 +119,18 @@
   </wsdl:binding>
   <wsdl:service name="DiffFilesInterfaceImpl">
     <wsdl:port name="NetTcpBinding_IDiffFilesInterface" binding="tns:NetTcpBinding_IDiffFilesInterface">
-      <soap12:address location="net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl" />
+      <soap12:address location="net.tcp://192.168.8.102:8080/DiffFilesInterfaceImpl" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.8.102:8080/DiffFilesInterfaceImpl</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-5BNAJM2\Adrian</Upn>
+          <Upn>DESKTOP-5AHI0I2\piotr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IDiffFilesInterface1" binding="tns:NetTcpBinding_IDiffFilesInterface1">
-      <soap12:address location="net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl/DiffFilesService" />
+      <soap12:address location="net.tcp://192.168.8.102:8080/DiffFilesInterfaceImpl/DiffFilesService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl/DiffFilesService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.8.102:8080/DiffFilesInterfaceImpl/DiffFilesService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>
