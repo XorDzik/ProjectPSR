@@ -69,7 +69,7 @@ namespace ProjectServiceLibary
                 }
             }
 
-            int howManyTheSameLetters = counter + pattern;
+            int howManyTheSameLetters = counter * pattern - counter;
             return howManyTheSameLetters;
         } 
        
