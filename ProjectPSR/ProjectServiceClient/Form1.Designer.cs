@@ -31,9 +31,11 @@
             this.chooseFilesButton = new System.Windows.Forms.Button();
             this.compareButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtEditor1 = new System.Windows.Forms.TextBox();
+            this.textEditorFirstFile = new System.Windows.Forms.TextBox();
             this.patternInput = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.textEditorSecondFile = new System.Windows.Forms.TextBox();
+            this.filesList = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // chooseFilesButton
@@ -67,16 +69,16 @@
             this.label1.Size = new System.Drawing.Size(0, 17);
             this.label1.TabIndex = 5;
             // 
-            // txtEditor1
+            // textEditorFirstFile
             // 
-            this.txtEditor1.Location = new System.Drawing.Point(314, 123);
-            this.txtEditor1.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEditor1.Multiline = true;
-            this.txtEditor1.Name = "txtEditor1";
-            this.txtEditor1.ReadOnly = true;
-            this.txtEditor1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtEditor1.Size = new System.Drawing.Size(549, 368);
-            this.txtEditor1.TabIndex = 6;
+            this.textEditorFirstFile.Location = new System.Drawing.Point(208, 113);
+            this.textEditorFirstFile.Margin = new System.Windows.Forms.Padding(4);
+            this.textEditorFirstFile.Multiline = true;
+            this.textEditorFirstFile.Name = "textEditorFirstFile";
+            this.textEditorFirstFile.ReadOnly = true;
+            this.textEditorFirstFile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textEditorFirstFile.Size = new System.Drawing.Size(449, 420);
+            this.textEditorFirstFile.TabIndex = 6;
             // 
             // patternInput
             // 
@@ -98,14 +100,36 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Proszę podać pattern:";
             // 
+            // textEditorSecondFile
+            // 
+            this.textEditorSecondFile.Location = new System.Drawing.Point(684, 113);
+            this.textEditorSecondFile.Margin = new System.Windows.Forms.Padding(4);
+            this.textEditorSecondFile.Multiline = true;
+            this.textEditorSecondFile.Name = "textEditorSecondFile";
+            this.textEditorSecondFile.ReadOnly = true;
+            this.textEditorSecondFile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textEditorSecondFile.Size = new System.Drawing.Size(448, 420);
+            this.textEditorSecondFile.TabIndex = 9;
+            // 
+            // filesList
+            // 
+            this.filesList.FormattingEnabled = true;
+            this.filesList.ItemHeight = 16;
+            this.filesList.Location = new System.Drawing.Point(12, 113);
+            this.filesList.Name = "filesList";
+            this.filesList.Size = new System.Drawing.Size(189, 420);
+            this.filesList.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1165, 554);
+            this.Controls.Add(this.filesList);
+            this.Controls.Add(this.textEditorSecondFile);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.patternInput);
-            this.Controls.Add(this.txtEditor1);
+            this.Controls.Add(this.textEditorFirstFile);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.compareButton);
             this.Controls.Add(this.chooseFilesButton);
@@ -122,9 +146,11 @@
         private System.Windows.Forms.Button chooseFilesButton;
         private System.Windows.Forms.Button compareButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtEditor1;
+        private System.Windows.Forms.TextBox textEditorFirstFile;
         private System.Windows.Forms.TextBox patternInput;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textEditorSecondFile;
+        private System.Windows.Forms.ListBox filesList;
     }
 }
 

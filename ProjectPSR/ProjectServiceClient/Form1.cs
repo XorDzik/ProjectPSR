@@ -18,7 +18,8 @@ namespace ProjectServiceClient
     public partial class Form1 : Form
     {
         DiffFilesInterfaceClient client = new DiffFilesInterfaceRef.DiffFilesInterfaceClient();
-        List<String> filesToSend = new List<String>();
+        List<String> filesToSendList = new List<String>();
+        List<double> probabilitiesList = new List<double>();
 
 
         public Form1()
@@ -28,6 +29,9 @@ namespace ProjectServiceClient
 
         private void chooseFilesButtonOnClick(object sender, EventArgs e)
         {
+            if (filesList.Items.Count > 0)
+                filesList.Items.Clear();
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             
             openFileDialog.Filter = "Text files (*.txt)|*.txt";
@@ -36,7 +40,7 @@ namespace ProjectServiceClient
             if (openFileDialog.ShowDialog() == DialogResult.OK) 
             {
                 foreach (String file in openFileDialog.FileNames)
-                    filesToSend.Add(file);
+                    filesToSendList.Add(file);
             }
         }
 
@@ -49,15 +53,19 @@ namespace ProjectServiceClient
             }
 
             int pattern = int.Parse(patternInput.Text);
-            for (int i = 0; i < filesToSend.Count(); i++)
+            for (int i = 0; i < filesToSendList.Count() - 1; i++)
             {
-                for (int j = 0; j < filesToSend.Count(); j++) 
+                filesList.Items.Add("|" + filesToSendList[i].Substring(filesToSendList[i].LastIndexOf('\\') + 1));
+                for (int j = 0; j < filesToSendList.Count(); j++) 
                 {
                     if (i < j)
                     {
-                        int howManyTheSameLetter = client.compareFileLetterByLetter(filesToSend[i], filesToSend[j], pattern);
-                        txtEditor1.Text = howManyTheSameLetter.ToString();
-                        // wyslij dwa pliki do porownania do serwera
+                        double probabilityPercent = client.compareFileLetterByLetterAndCalculateProbability(filesToSendList[i], filesToSendList[j], pattern);
+                        
+                        filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1)
+                            + " " + probabilityPercent.ToString() + "%");
+
+                        textEditorFirstFile.Text = client.compareFileLetterByLetter(filesToSendList[i], filesToSendList[j], pattern).ToString();
                     }
                 }
             }

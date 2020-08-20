@@ -14,7 +14,7 @@ namespace ProjectServiceHost
         static void Main(string[] args)
         {
             var uris = new Uri[1];
-            string adr = "net.tcp://192.168.8.102:8080/DiffFilesInterfaceImpl";
+            string adr = "net.tcp://192.168.8.100:8080/DiffFilesInterfaceImpl";
             uris[0] = new Uri(adr);
            // Uri baseAddress = new Uri("http://localhost:8001/DiffFilesInterfaceImpl/");
             ServiceHost selfHost = new ServiceHost(typeof(DiffFilesInterfaceImpl), uris);

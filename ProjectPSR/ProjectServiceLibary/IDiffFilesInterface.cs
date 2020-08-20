@@ -14,6 +14,7 @@ namespace ProjectServiceLibary
         int compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern);
 
         [OperationContract]
-        double percentCalculate(double distanceLevenhstein, double firstTextLenght);
+        double compareFileLetterByLetterAndCalculateProbability(string firstFileName, string secondFileName, int pattern);
+
     }
 }

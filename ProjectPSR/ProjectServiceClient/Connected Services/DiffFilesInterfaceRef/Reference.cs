@@ -21,11 +21,15 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter", ReplyAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterResponse")]
         System.Threading.Tasks.Task<int> compareFileLetterByLetterAsync(string firstFileName, string secondFileName, int pattern);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/percentCalculate", ReplyAction="http://tempuri.org/IDiffFilesInterface/percentCalculateResponse")]
-        double percentCalculate(double distanceLevenhstein, double firstTextLenght);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterAndCalculateProba" +
+            "bility", ReplyAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterAndCalculateProba" +
+            "bilityResponse")]
+        double compareFileLetterByLetterAndCalculateProbability(string firstFileName, string secondFileName, int pattern);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/percentCalculate", ReplyAction="http://tempuri.org/IDiffFilesInterface/percentCalculateResponse")]
-        System.Threading.Tasks.Task<double> percentCalculateAsync(double distanceLevenhstein, double firstTextLenght);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterAndCalculateProba" +
+            "bility", ReplyAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterAndCalculateProba" +
+            "bilityResponse")]
+        System.Threading.Tasks.Task<double> compareFileLetterByLetterAndCalculateProbabilityAsync(string firstFileName, string secondFileName, int pattern);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -63,12 +67,12 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
             return base.Channel.compareFileLetterByLetterAsync(firstFileName, secondFileName, pattern);
         }
         
-        public double percentCalculate(double distanceLevenhstein, double firstTextLenght) {
-            return base.Channel.percentCalculate(distanceLevenhstein, firstTextLenght);
+        public double compareFileLetterByLetterAndCalculateProbability(string firstFileName, string secondFileName, int pattern) {
+            return base.Channel.compareFileLetterByLetterAndCalculateProbability(firstFileName, secondFileName, pattern);
         }
         
-        public System.Threading.Tasks.Task<double> percentCalculateAsync(double distanceLevenhstein, double firstTextLenght) {
-            return base.Channel.percentCalculateAsync(distanceLevenhstein, firstTextLenght);
+        public System.Threading.Tasks.Task<double> compareFileLetterByLetterAndCalculateProbabilityAsync(string firstFileName, string secondFileName, int pattern) {
+            return base.Channel.compareFileLetterByLetterAndCalculateProbabilityAsync(firstFileName, secondFileName, pattern);
         }
     }
 }
