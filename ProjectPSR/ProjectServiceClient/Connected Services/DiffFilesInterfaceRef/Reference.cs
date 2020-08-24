@@ -21,6 +21,12 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter", ReplyAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterResponse")]
         System.Threading.Tasks.Task<int> compareFileLetterByLetterAsync(string firstFileName, string secondFileName, int pattern);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/compareFileWordByWord", ReplyAction="http://tempuri.org/IDiffFilesInterface/compareFileWordByWordResponse")]
+        void compareFileWordByWord(string firstFileName, string secondFileName, int pattern);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/compareFileWordByWord", ReplyAction="http://tempuri.org/IDiffFilesInterface/compareFileWordByWordResponse")]
+        System.Threading.Tasks.Task compareFileWordByWordAsync(string firstFileName, string secondFileName, int pattern);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterAndCalculateProba" +
             "bility", ReplyAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterAndCalculateProba" +
             "bilityResponse")]
@@ -65,6 +71,14 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
         
         public System.Threading.Tasks.Task<int> compareFileLetterByLetterAsync(string firstFileName, string secondFileName, int pattern) {
             return base.Channel.compareFileLetterByLetterAsync(firstFileName, secondFileName, pattern);
+        }
+        
+        public void compareFileWordByWord(string firstFileName, string secondFileName, int pattern) {
+            base.Channel.compareFileWordByWord(firstFileName, secondFileName, pattern);
+        }
+        
+        public System.Threading.Tasks.Task compareFileWordByWordAsync(string firstFileName, string secondFileName, int pattern) {
+            return base.Channel.compareFileWordByWordAsync(firstFileName, secondFileName, pattern);
         }
         
         public double compareFileLetterByLetterAndCalculateProbability(string firstFileName, string secondFileName, int pattern) {

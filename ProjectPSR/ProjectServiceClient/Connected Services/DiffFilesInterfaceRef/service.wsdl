@@ -55,6 +55,12 @@
   <wsdl:message name="IDiffFilesInterface_compareFileLetterByLetter_OutputMessage">
     <wsdl:part name="parameters" element="tns:compareFileLetterByLetterResponse" />
   </wsdl:message>
+  <wsdl:message name="IDiffFilesInterface_compareFileWordByWord_InputMessage">
+    <wsdl:part name="parameters" element="tns:compareFileWordByWord" />
+  </wsdl:message>
+  <wsdl:message name="IDiffFilesInterface_compareFileWordByWord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:compareFileWordByWordResponse" />
+  </wsdl:message>
   <wsdl:message name="IDiffFilesInterface_compareFileLetterByLetterAndCalculateProbability_InputMessage">
     <wsdl:part name="parameters" element="tns:compareFileLetterByLetterAndCalculateProbability" />
   </wsdl:message>
@@ -65,6 +71,10 @@
     <wsdl:operation name="compareFileLetterByLetter">
       <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter" message="tns:IDiffFilesInterface_compareFileLetterByLetter_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterResponse" message="tns:IDiffFilesInterface_compareFileLetterByLetter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="compareFileWordByWord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/compareFileWordByWord" message="tns:IDiffFilesInterface_compareFileWordByWord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDiffFilesInterface/compareFileWordByWordResponse" message="tns:IDiffFilesInterface_compareFileWordByWord_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="compareFileLetterByLetterAndCalculateProbability">
       <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterAndCalculateProbability" message="tns:IDiffFilesInterface_compareFileLetterByLetterAndCalculateProbability_InputMessage" />
@@ -77,6 +87,15 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="compareFileLetterByLetter">
       <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="compareFileWordByWord">
+      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/compareFileWordByWord" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -100,6 +119,15 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="compareFileLetterByLetter">
       <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="compareFileWordByWord">
+      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/compareFileWordByWord" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -41,7 +41,10 @@ namespace ProjectServiceLibary
                         int lastPositionFirstFile = firstCounter + pattern;
                         int lastTheSamePositionSecondFile = secondCounter + pattern;
 
-                        position.Add(firstCounter.ToString() + ";" + lastPositionFirstFile.ToString(), secondCounter.ToString() + ";" + lastTheSamePositionSecondFile.ToString());
+                        if (position.ContainsKey(firstCounter.ToString() + ";" + lastPositionFirstFile.ToString()))
+                            firstCounter++;
+
+                        position.Add(firstCounter.ToString() + ";" + lastPositionFirstFile.ToString(), "");
                     }
                 }
                 firstCounter++;
