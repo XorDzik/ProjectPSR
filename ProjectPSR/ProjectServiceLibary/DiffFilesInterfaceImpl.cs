@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Runtime.Serialization;
-using System.Security.Cryptography;
 using System.ServiceModel;
-using System.ServiceModel.Activation;
-using System.Text;
 
 namespace ProjectServiceLibary
 {
@@ -22,47 +17,11 @@ namespace ProjectServiceLibary
             char[] firstFileContent = File.ReadAllText(firstFileName).ToCharArray();
             char[] secondFileContent = File.ReadAllText(secondFileName).ToCharArray();
 
-            List<string> firstFileContentList = new List<string>();
-            List<string> secondFileContentList = new List<string>();
+            List<string> firstFileContentList = charTabToList(firstFileContent, pattern);
+            List<string> secondFileContentList = charTabToList(secondFileContent, pattern);
             List<int> list = new List<int>();
 
             var position = new Dictionary<string, string>();
-
-            string tmpStr = "";
-            int securityLength;
-
-            for (int i = 0; i < firstFileContent.Length; i++)
-            {
-                securityLength = pattern + i;
-                for (int j = i; j < securityLength; j++)
-                {
-                    if (securityLength <= firstFileContent.Length)
-                        tmpStr += firstFileContent[j];
-                }
-                firstFileContentList.Add(tmpStr);
-
-                if (securityLength >= firstFileContent.Length)
-                    break;
-
-                tmpStr = "";
-            }
-
-            tmpStr = "";
-            for (int i = 0; i < secondFileContent.Length; i++)
-            {
-                securityLength = pattern + i;
-                for (int j = i; j < securityLength; j++)
-                {
-                    if (securityLength <= secondFileContent.Length)
-                        tmpStr += secondFileContent[j];
-                }
-                secondFileContentList.Add(tmpStr);
-
-                if (securityLength >= firstFileContent.Length)
-                    break;
-
-                tmpStr = "";
-            }
        
             int firstCounter = 0;
             int secondCounter = 0;
@@ -115,6 +74,52 @@ namespace ProjectServiceLibary
             }
 
             return howManyTheSameLetters;
+        }
+
+        public void compareFileWordByWord(string firsFileName, string secondFileName, int pattern)
+        {
+            string[] firstFileContentTmp = File.ReadAllText(firsFileName).Split(' ');
+            string[] secondFileContentTmp = File.ReadAllText(secondFileName).Split(' ');
+
+            string[] firstFileContent = toLowerCase(firstFileContentTmp);
+            string[] secondFileContent = toLowerCase(secondFileContentTmp);
+
+        }
+
+        public string[] toLowerCase(string[] fileContent)
+        {
+            string[] fileContentToReturn = new string[fileContent.Length];
+            for (int i = 0; i < fileContent.Length; i++)
+            {
+                fileContentToReturn[i] = fileContent[i].ToLower();
+            }
+
+            return fileContentToReturn;
+        }
+
+        public List<string> charTabToList(char[] chars, int pattern)
+        {
+            string tmpStr = "";
+            int securityLength = 0;
+
+            List<string> contentList = new List<string>();
+            for (int i = 0; i < chars.Length; i++)
+            {
+                securityLength = pattern + i;
+                for (int j = i; j < securityLength; j++)
+                {
+                    if (securityLength <= chars.Length)
+                        tmpStr += chars[j];
+                }
+                contentList.Add(tmpStr);
+
+                if (securityLength >= chars.Length)
+                    break;
+
+                tmpStr = "";
+            }
+
+            return contentList;
         }
 
         public double compareFileLetterByLetterAndCalculateProbability(string firstFileName, string secondFileName, int pattern)

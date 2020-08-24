@@ -18,7 +18,8 @@ namespace ProjectServiceClient
     public partial class Form1 : Form
     {
         DiffFilesInterfaceClient client = new DiffFilesInterfaceRef.DiffFilesInterfaceClient();
-        List<String> filesToSendList = new List<String>();
+        List<string> filesToSendList = new List<string>();
+        List<string> filesToDisplayList = new List<string>();
         List<double> probabilitiesList = new List<double>();
 
 
@@ -52,23 +53,75 @@ namespace ProjectServiceClient
                 return;
             }
 
+            if (letterByLetterRadioButton.Checked)
+            {
+                sendDataForCompareLetterByLetter();
+            }
+            else if (wordByWordRadioButton.Checked)
+            {
+                sendDataForCompareWordByWord();
+            }
+            else
+            {
+                MessageBox.Show("Proszę wybrać metodę porównania", "Błąd!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void sendDataForCompareLetterByLetter()
+        {
             int pattern = int.Parse(patternInput.Text);
             for (int i = 0; i < filesToSendList.Count() - 1; i++)
             {
+                filesToDisplayList.Add(filesToSendList[i]);
                 filesList.Items.Add("|" + filesToSendList[i].Substring(filesToSendList[i].LastIndexOf('\\') + 1));
-                for (int j = 0; j < filesToSendList.Count(); j++) 
+
+                for (int j = 0; j < filesToSendList.Count(); j++)
                 {
                     if (i < j)
                     {
                         double probabilityPercent = client.compareFileLetterByLetterAndCalculateProbability(filesToSendList[i], filesToSendList[j], pattern);
-                        
+
+                        filesToDisplayList.Add(filesToSendList[j]);
                         filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1)
                             + " " + probabilityPercent.ToString() + "%");
 
-                        textEditorFirstFile.Text = client.compareFileLetterByLetter(filesToSendList[i], filesToSendList[j], pattern).ToString();
+                       // textEditorFirstFile.Text = client.compareFileLetterByLetter(filesToSendList[i], filesToSendList[j], pattern).ToString();
                     }
                 }
             }
+        }
+
+        public void sendDataForCompareWordByWord()
+        {
+
+        }
+
+        public void filesListItemOnClick(object sender, System.EventArgs e)
+        {
+            int index = filesList.SelectedIndex;
+
+            if (textEditorFirstFile.TextLength == 0)
+                textEditorFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
+
+            else if (textEditorSecondFile.TextLength == 0)
+                textEditorSecondFile.Text = File.ReadAllText(filesToDisplayList[index]);
+
+            else
+            {
+                clearTextEditors();
+                textEditorFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
+            }
+        }
+
+        private void clearButtonOnClick(object sender, EventArgs e)
+        {
+            clearTextEditors();
+        }
+
+        private void clearTextEditors()
+        {
+            textEditorFirstFile.Text = "";
+            textEditorSecondFile.Text = "";
         }
     }
 }

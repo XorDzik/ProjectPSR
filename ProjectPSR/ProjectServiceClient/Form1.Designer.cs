@@ -36,6 +36,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textEditorSecondFile = new System.Windows.Forms.TextBox();
             this.filesList = new System.Windows.Forms.ListBox();
+            this.wordByWordRadioButton = new System.Windows.Forms.RadioButton();
+            this.letterByLetterRadioButton = new System.Windows.Forms.RadioButton();
+            this.clearButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // chooseFilesButton
@@ -43,7 +46,7 @@
             this.chooseFilesButton.Location = new System.Drawing.Point(303, 15);
             this.chooseFilesButton.Margin = new System.Windows.Forms.Padding(4);
             this.chooseFilesButton.Name = "chooseFilesButton";
-            this.chooseFilesButton.Size = new System.Drawing.Size(104, 55);
+            this.chooseFilesButton.Size = new System.Drawing.Size(173, 55);
             this.chooseFilesButton.TabIndex = 0;
             this.chooseFilesButton.Text = "Choose files";
             this.chooseFilesButton.UseVisualStyleBackColor = true;
@@ -51,10 +54,10 @@
             // 
             // compareButton
             // 
-            this.compareButton.Location = new System.Drawing.Point(744, 15);
+            this.compareButton.Location = new System.Drawing.Point(776, 495);
             this.compareButton.Margin = new System.Windows.Forms.Padding(4);
             this.compareButton.Name = "compareButton";
-            this.compareButton.Size = new System.Drawing.Size(119, 55);
+            this.compareButton.Size = new System.Drawing.Size(249, 36);
             this.compareButton.TabIndex = 4;
             this.compareButton.Text = "Compare";
             this.compareButton.UseVisualStyleBackColor = true;
@@ -77,23 +80,23 @@
             this.textEditorFirstFile.Name = "textEditorFirstFile";
             this.textEditorFirstFile.ReadOnly = true;
             this.textEditorFirstFile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textEditorFirstFile.Size = new System.Drawing.Size(449, 420);
+            this.textEditorFirstFile.Size = new System.Drawing.Size(479, 370);
             this.textEditorFirstFile.TabIndex = 6;
             // 
             // patternInput
             // 
-            this.patternInput.Location = new System.Drawing.Point(460, 31);
+            this.patternInput.Location = new System.Drawing.Point(538, 34);
             this.patternInput.Margin = new System.Windows.Forms.Padding(4);
             this.patternInput.Multiline = true;
             this.patternInput.Name = "patternInput";
             this.patternInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.patternInput.Size = new System.Drawing.Size(227, 29);
+            this.patternInput.Size = new System.Drawing.Size(261, 29);
             this.patternInput.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(500, 11);
+            this.label2.Location = new System.Drawing.Point(598, 13);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(148, 17);
@@ -102,29 +105,65 @@
             // 
             // textEditorSecondFile
             // 
-            this.textEditorSecondFile.Location = new System.Drawing.Point(684, 113);
+            this.textEditorSecondFile.Location = new System.Drawing.Point(695, 113);
             this.textEditorSecondFile.Margin = new System.Windows.Forms.Padding(4);
             this.textEditorSecondFile.Multiline = true;
             this.textEditorSecondFile.Name = "textEditorSecondFile";
             this.textEditorSecondFile.ReadOnly = true;
             this.textEditorSecondFile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textEditorSecondFile.Size = new System.Drawing.Size(448, 420);
+            this.textEditorSecondFile.Size = new System.Drawing.Size(486, 370);
             this.textEditorSecondFile.TabIndex = 9;
             // 
             // filesList
             // 
             this.filesList.FormattingEnabled = true;
             this.filesList.ItemHeight = 16;
-            this.filesList.Location = new System.Drawing.Point(12, 113);
+            this.filesList.Location = new System.Drawing.Point(12, 15);
             this.filesList.Name = "filesList";
-            this.filesList.Size = new System.Drawing.Size(189, 420);
+            this.filesList.Size = new System.Drawing.Size(189, 468);
             this.filesList.TabIndex = 10;
+            this.filesList.SelectedIndexChanged += new System.EventHandler(this.filesListItemOnClick);
+            // 
+            // wordByWordRadioButton
+            // 
+            this.wordByWordRadioButton.AutoSize = true;
+            this.wordByWordRadioButton.Location = new System.Drawing.Point(840, 42);
+            this.wordByWordRadioButton.Name = "wordByWordRadioButton";
+            this.wordByWordRadioButton.Size = new System.Drawing.Size(204, 21);
+            this.wordByWordRadioButton.TabIndex = 11;
+            this.wordByWordRadioButton.TabStop = true;
+            this.wordByWordRadioButton.Text = "Porównanie słowo po słowie";
+            this.wordByWordRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // letterByLetterRadioButton
+            // 
+            this.letterByLetterRadioButton.AutoSize = true;
+            this.letterByLetterRadioButton.Location = new System.Drawing.Point(840, 15);
+            this.letterByLetterRadioButton.Name = "letterByLetterRadioButton";
+            this.letterByLetterRadioButton.Size = new System.Drawing.Size(199, 21);
+            this.letterByLetterRadioButton.TabIndex = 12;
+            this.letterByLetterRadioButton.TabStop = true;
+            this.letterByLetterRadioButton.Text = "Porównanie znak po znaku";
+            this.letterByLetterRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // clearButton
+            // 
+            this.clearButton.Location = new System.Drawing.Point(303, 495);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(251, 35);
+            this.clearButton.TabIndex = 13;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButtonOnClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1165, 554);
+            this.ClientSize = new System.Drawing.Size(1194, 554);
+            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.letterByLetterRadioButton);
+            this.Controls.Add(this.wordByWordRadioButton);
             this.Controls.Add(this.filesList);
             this.Controls.Add(this.textEditorSecondFile);
             this.Controls.Add(this.label2);
@@ -151,6 +190,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textEditorSecondFile;
         private System.Windows.Forms.ListBox filesList;
+        private System.Windows.Forms.RadioButton wordByWordRadioButton;
+        private System.Windows.Forms.RadioButton letterByLetterRadioButton;
+        private System.Windows.Forms.Button clearButton;
     }
 }
 
