@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
+using System.Text.RegularExpressions;
 
 namespace ProjectServiceLibary
 {
@@ -79,14 +80,30 @@ namespace ProjectServiceLibary
             return howManyTheSameLetters;
         }
 
-        public void compareFileWordByWord(string firsFileName, string secondFileName, int pattern)
+        public IDictionary<int, string> compareFileWordByWord(string firsFileName, string secondFileName, int pattern)
         {
-            string[] firstFileContentTmp = File.ReadAllText(firsFileName).Split(' ');
-            string[] secondFileContentTmp = File.ReadAllText(secondFileName).Split(' ');
+            IDictionary<int, string> theSameElementsPos = new Dictionary<int, string>();
 
-            string[] firstFileContent = toLowerCase(firstFileContentTmp);
-            string[] secondFileContent = toLowerCase(secondFileContentTmp);
+            string firstFileContent = File.ReadAllText(firsFileName);
+            string[] secondFileContent = File.ReadAllText(secondFileName).Split(' ');
+           
+            for (int i = 0; i < secondFileContent.Length; i += pattern)
+            {
+                string secondFileWord = "";
+                if (i > 1)
+                { 
+                    for (int j = i - pattern; j < i; j++)
+                        secondFileWord += secondFileContent[j] + " ";
 
+                    string patternx = @"\b" + secondFileWord + @"\b";
+                    
+                    Regex rgx = new Regex(patternx, RegexOptions.IgnoreCase);
+                    foreach (Match match in rgx.Matches(firstFileContent))
+                        theSameElementsPos.Add(match.Index, match.Value);
+                }
+            }
+
+            return theSameElementsPos;
         }
 
         public string[] toLowerCase(string[] fileContent)

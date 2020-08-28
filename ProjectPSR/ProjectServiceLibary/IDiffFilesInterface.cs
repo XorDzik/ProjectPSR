@@ -14,7 +14,7 @@ namespace ProjectServiceLibary
         int compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern);
 
         [OperationContract]
-        void compareFileWordByWord(string firstFileName, string secondFileName, int pattern);
+        IDictionary<int, string> compareFileWordByWord(string firstFileName, string secondFileName, int pattern);
 
         [OperationContract]
         double compareFileLetterByLetterAndCalculateProbability(string firstFileName, string secondFileName, int pattern);

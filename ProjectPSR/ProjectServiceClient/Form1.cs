@@ -93,7 +93,36 @@ namespace ProjectServiceClient
 
         public void sendDataForCompareWordByWord()
         {
+            int pattern = int.Parse(patternInput.Text);
+            IDictionary<int, string> theSameElementsPosTmp = new Dictionary<int, string>();
+            IDictionary<int, string> theSameElementsPos = new Dictionary<int, string>();
 
+            for (int i = 0; i < filesToSendList.Count() - 1; i++)
+            {
+                filesToDisplayList.Add(filesToSendList[i]);
+                filesList.Items.Add("|" + filesToSendList[i].Substring(filesToSendList[i].LastIndexOf('\\') + 1));
+
+                for (int j = 0; j < filesToSendList.Count(); j++)
+                {
+                    if (i < j)
+                    {
+                        theSameElementsPosTmp = client.compareFileWordByWord(filesToSendList[i], filesToSendList[j], pattern);
+
+                        foreach (KeyValuePair<int, string> kvp in theSameElementsPosTmp)
+                            theSameElementsPos.Add(kvp.Key, kvp.Value);
+
+                        filesToDisplayList.Add(filesToSendList[j]);
+                        filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1));
+
+                        // textEditorFirstFile.Text = client.compareFileLetterByLetter(filesToSendList[i], filesToSendList[j], pattern).ToString();
+                    }
+                }
+            }
+
+            foreach (KeyValuePair<int, string> kvp in theSameElementsPos)
+            {
+                textEditorFirstFile.Text += kvp.Key + " " + kvp.Value + '\n';
+            }
         }
 
         public void filesListItemOnClick(object sender, System.EventArgs e)
@@ -116,6 +145,7 @@ namespace ProjectServiceClient
         private void clearButtonOnClick(object sender, EventArgs e)
         {
             clearTextEditors();
+            filesToSendList.Clear();
         }
 
         private void clearTextEditors()
