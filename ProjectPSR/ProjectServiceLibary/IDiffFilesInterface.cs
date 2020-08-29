@@ -19,5 +19,8 @@ namespace ProjectServiceLibary
         [OperationContract]
         double compareFileLetterByLetterAndCalculateProbability(string firstFileName, string secondFileName, int pattern);
 
+        [OperationContract]
+        double percentCalculate(double howManyTheSameLetters, double firstFileLength);
+
     }
 }

@@ -20,7 +20,6 @@ namespace ProjectServiceClient
         DiffFilesInterfaceClient client = new DiffFilesInterfaceRef.DiffFilesInterfaceClient();
         List<string> filesToSendList = new List<string>();
         List<string> filesToDisplayList = new List<string>();
-        List<double> probabilitiesList = new List<double>();
 
 
         public Form1()
@@ -84,8 +83,6 @@ namespace ProjectServiceClient
                         filesToDisplayList.Add(filesToSendList[j]);
                         filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1)
                             + " " + probabilityPercent.ToString() + "%");
-
-                       // textEditorFirstFile.Text = client.compareFileLetterByLetter(filesToSendList[i], filesToSendList[j], pattern).ToString();
                     }
                 }
             }
@@ -93,6 +90,7 @@ namespace ProjectServiceClient
 
         public void sendDataForCompareWordByWord()
         {
+            int theSameLettersLength = 0;
             int pattern = int.Parse(patternInput.Text);
             IDictionary<int, string> theSameElementsPosTmp = new Dictionary<int, string>();
             IDictionary<int, string> theSameElementsPos = new Dictionary<int, string>();
@@ -109,12 +107,14 @@ namespace ProjectServiceClient
                         theSameElementsPosTmp = client.compareFileWordByWord(filesToSendList[i], filesToSendList[j], pattern);
 
                         foreach (KeyValuePair<int, string> kvp in theSameElementsPosTmp)
+                        {
                             theSameElementsPos.Add(kvp.Key, kvp.Value);
+                            theSameLettersLength += kvp.Value.Length;
+                        }
 
+                        double percentProbability = client.percentCalculate(theSameLettersLength, File.ReadAllText(filesToSendList[i]).Length);
                         filesToDisplayList.Add(filesToSendList[j]);
-                        filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1));
-
-                        // textEditorFirstFile.Text = client.compareFileLetterByLetter(filesToSendList[i], filesToSendList[j], pattern).ToString();
+                        filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1) + " " + percentProbability.ToString() + "%");
                     }
                 }
             }

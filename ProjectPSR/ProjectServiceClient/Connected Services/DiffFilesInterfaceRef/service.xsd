@@ -49,4 +49,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="percentCalculate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="howManyTheSameLetters" type="xs:double" />
+        <xs:element minOccurs="0" name="firstFileLength" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="percentCalculateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="percentCalculateResult" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -36,6 +36,12 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
             "bility", ReplyAction="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetterAndCalculateProba" +
             "bilityResponse")]
         System.Threading.Tasks.Task<double> compareFileLetterByLetterAndCalculateProbabilityAsync(string firstFileName, string secondFileName, int pattern);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/percentCalculate", ReplyAction="http://tempuri.org/IDiffFilesInterface/percentCalculateResponse")]
+        double percentCalculate(double howManyTheSameLetters, double firstFileLength);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/percentCalculate", ReplyAction="http://tempuri.org/IDiffFilesInterface/percentCalculateResponse")]
+        System.Threading.Tasks.Task<double> percentCalculateAsync(double howManyTheSameLetters, double firstFileLength);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -87,6 +93,14 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
         
         public System.Threading.Tasks.Task<double> compareFileLetterByLetterAndCalculateProbabilityAsync(string firstFileName, string secondFileName, int pattern) {
             return base.Channel.compareFileLetterByLetterAndCalculateProbabilityAsync(firstFileName, secondFileName, pattern);
+        }
+        
+        public double percentCalculate(double howManyTheSameLetters, double firstFileLength) {
+            return base.Channel.percentCalculate(howManyTheSameLetters, firstFileLength);
+        }
+        
+        public System.Threading.Tasks.Task<double> percentCalculateAsync(double howManyTheSameLetters, double firstFileLength) {
+            return base.Channel.percentCalculateAsync(howManyTheSameLetters, firstFileLength);
         }
     }
 }
