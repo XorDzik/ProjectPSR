@@ -20,7 +20,7 @@ namespace ProjectServiceClient
         DiffFilesInterfaceClient client = new DiffFilesInterfaceRef.DiffFilesInterfaceClient();
         List<string> filesToSendList = new List<string>();
         List<string> filesToDisplayList = new List<string>();
-
+        IDictionary<int, string> theSameElementsPos = new Dictionary<int, string>();
 
         public Form1()
         {
@@ -93,7 +93,6 @@ namespace ProjectServiceClient
             int theSameLettersLength = 0;
             int pattern = int.Parse(patternInput.Text);
             IDictionary<int, string> theSameElementsPosTmp = new Dictionary<int, string>();
-            IDictionary<int, string> theSameElementsPos = new Dictionary<int, string>();
 
             for (int i = 0; i < filesToSendList.Count() - 1; i++)
             {
@@ -118,27 +117,27 @@ namespace ProjectServiceClient
                     }
                 }
             }
-
-            foreach (KeyValuePair<int, string> kvp in theSameElementsPos)
-            {
-                textEditorFirstFile.Text += kvp.Key + " " + kvp.Value + '\n';
-            }
         }
 
         public void filesListItemOnClick(object sender, System.EventArgs e)
         {
             int index = filesList.SelectedIndex;
 
-            if (textEditorFirstFile.TextLength == 0)
-                textEditorFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
+            if (txtBoxFirstFile.TextLength == 0)
+            {
+                txtBoxFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
+                colorTheSameTextFragments(txtBoxFirstFile);
 
-            else if (textEditorSecondFile.TextLength == 0)
-                textEditorSecondFile.Text = File.ReadAllText(filesToDisplayList[index]);
-
+            }
+            else if (txtBoxSecondFile.TextLength == 0)
+            {
+                txtBoxSecondFile.Text = File.ReadAllText(filesToDisplayList[index]);
+                colorTheSameTextFragments(txtBoxSecondFile);
+            }
             else
             {
                 clearTextEditors();
-                textEditorFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
+                txtBoxFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
             }
         }
 
@@ -150,8 +149,17 @@ namespace ProjectServiceClient
 
         private void clearTextEditors()
         {
-            textEditorFirstFile.Text = "";
-            textEditorSecondFile.Text = "";
+            txtBoxFirstFile.Text = "";
+            txtBoxSecondFile.Text = "";
+        }
+
+        private void colorTheSameTextFragments(RichTextBox richTextBox)
+        {
+            foreach (KeyValuePair<int, string> kvp in theSameElementsPos)
+            {
+                richTextBox.Select(kvp.Key, kvp.Value.Length);
+                richTextBox.SelectionColor = Color.Green;
+            }
         }
     }
 }
