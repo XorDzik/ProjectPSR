@@ -22,5 +22,10 @@ namespace ProjectServiceLibary
         [OperationContract]
         double percentCalculate(double howManyTheSameLetters, double firstFileLength);
 
+        [OperationContract]
+        IDictionary<int, string> getTheSameElementsPosSecondFile();
+
+        [OperationContract]
+        void clearTheSameElementsPosSecondFile();
     }
 }

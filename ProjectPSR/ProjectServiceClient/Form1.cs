@@ -126,13 +126,13 @@ namespace ProjectServiceClient
             if (txtBoxFirstFile.TextLength == 0)
             {
                 txtBoxFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
-                colorTheSameTextFragments(txtBoxFirstFile);
+                colorTheSameTextFragments(txtBoxFirstFile, theSameElementsPos);
 
             }
             else if (txtBoxSecondFile.TextLength == 0)
             {
                 txtBoxSecondFile.Text = File.ReadAllText(filesToDisplayList[index]);
-                colorTheSameTextFragments(txtBoxSecondFile);
+                colorTheSameTextFragments(txtBoxSecondFile, client.getTheSameElementsPosSecondFile());
             }
             else
             {
@@ -145,6 +145,8 @@ namespace ProjectServiceClient
         {
             clearTextEditors();
             filesToSendList.Clear();
+            theSameElementsPos.Clear();
+            client.clearTheSameElementsPosSecondFile();
         }
 
         private void clearTextEditors()
@@ -153,7 +155,7 @@ namespace ProjectServiceClient
             txtBoxSecondFile.Text = "";
         }
 
-        private void colorTheSameTextFragments(RichTextBox richTextBox)
+        private void colorTheSameTextFragments(RichTextBox richTextBox, IDictionary<int, string> theSameElementsPos)
         {
             foreach (KeyValuePair<int, string> kvp in theSameElementsPos)
             {

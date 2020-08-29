@@ -74,6 +74,18 @@
   <wsdl:message name="IDiffFilesInterface_percentCalculate_OutputMessage">
     <wsdl:part name="parameters" element="tns:percentCalculateResponse" />
   </wsdl:message>
+  <wsdl:message name="IDiffFilesInterface_getTheSameElementsPosSecondFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTheSameElementsPosSecondFile" />
+  </wsdl:message>
+  <wsdl:message name="IDiffFilesInterface_getTheSameElementsPosSecondFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTheSameElementsPosSecondFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDiffFilesInterface_clearTheSameElementsPosSecondFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:clearTheSameElementsPosSecondFile" />
+  </wsdl:message>
+  <wsdl:message name="IDiffFilesInterface_clearTheSameElementsPosSecondFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:clearTheSameElementsPosSecondFileResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDiffFilesInterface">
     <wsdl:operation name="compareFileLetterByLetter">
       <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter" message="tns:IDiffFilesInterface_compareFileLetterByLetter_InputMessage" />
@@ -90,6 +102,14 @@
     <wsdl:operation name="percentCalculate">
       <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/percentCalculate" message="tns:IDiffFilesInterface_percentCalculate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDiffFilesInterface/percentCalculateResponse" message="tns:IDiffFilesInterface_percentCalculate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTheSameElementsPosSecondFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/getTheSameElementsPosSecondFile" message="tns:IDiffFilesInterface_getTheSameElementsPosSecondFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDiffFilesInterface/getTheSameElementsPosSecondFileResponse" message="tns:IDiffFilesInterface_getTheSameElementsPosSecondFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="clearTheSameElementsPosSecondFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFile" message="tns:IDiffFilesInterface_clearTheSameElementsPosSecondFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFileResponse" message="tns:IDiffFilesInterface_clearTheSameElementsPosSecondFile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IDiffFilesInterface" type="tns:IDiffFilesInterface">
@@ -132,6 +152,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getTheSameElementsPosSecondFile">
+      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/getTheSameElementsPosSecondFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clearTheSameElementsPosSecondFile">
+      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_IDiffFilesInterface1" type="tns:IDiffFilesInterface">
     <wsp:PolicyReference URI="#NetTcpBinding_IDiffFilesInterface1_policy">
@@ -166,6 +204,24 @@
     </wsdl:operation>
     <wsdl:operation name="percentCalculate">
       <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/percentCalculate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTheSameElementsPosSecondFile">
+      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/getTheSameElementsPosSecondFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clearTheSameElementsPosSecondFile">
+      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

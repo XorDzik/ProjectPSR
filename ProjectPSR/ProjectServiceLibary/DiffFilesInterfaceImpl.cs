@@ -10,7 +10,10 @@ namespace ProjectServiceLibary
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Single)]
     public class DiffFilesInterfaceImpl : IDiffFilesInterface
     {
-        public const int ROUND_RESULT = 2; 
+        public const int ROUND_RESULT = 2;
+        IDictionary<int, string> theSameElementsPosSecondFile = new Dictionary<int, string>();
+
+
         public int compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern)
         {
             int howManyTheSameLetters = 0;
@@ -82,28 +85,33 @@ namespace ProjectServiceLibary
 
         public IDictionary<int, string> compareFileWordByWord(string firsFileName, string secondFileName, int pattern)
         {
-            IDictionary<int, string> theSameElementsPos = new Dictionary<int, string>();
+            IDictionary<int, string> theSameElementsPosFirstFile = new Dictionary<int, string>();
 
             string firstFileContent = File.ReadAllText(firsFileName);
-            string[] secondFileContent = File.ReadAllText(secondFileName).Split(' ');
+            string secondFileContent = File.ReadAllText(secondFileName);
+            string[] secondFileContentSpit = secondFileContent.Split(' ');
            
-            for (int i = 0; i < secondFileContent.Length; i += pattern)
+            for (int i = 0; i < secondFileContentSpit.Length; i += pattern)
             {
                 string secondFileWord = "";
                 if (i > 1)
                 { 
                     for (int j = i - pattern; j < i; j++)
-                        secondFileWord += secondFileContent[j] + " ";
+                        secondFileWord += secondFileContentSpit[j] + " ";
 
                     string patternx = @"\b" + secondFileWord + @"\b";
                     
                     Regex rgx = new Regex(patternx, RegexOptions.IgnoreCase);
                     foreach (Match match in rgx.Matches(firstFileContent))
-                        theSameElementsPos.Add(match.Index, match.Value);
+                        theSameElementsPosFirstFile.Add(match.Index, match.Value);
+
+                    if (rgx.IsMatch(firstFileContent))
+                        foreach (Match matchSecondFile in rgx.Matches(secondFileContent))
+                            theSameElementsPosSecondFile.Add(matchSecondFile.Index, matchSecondFile.Value);
                 }
             }
 
-            return theSameElementsPos;
+            return theSameElementsPosFirstFile;
         }
 
         public string[] toLowerCase(string[] fileContent)
@@ -153,6 +161,16 @@ namespace ProjectServiceLibary
         public double percentCalculate(double howManyTheSameLetters, double firstFileLength)
         {
             return Math.Round((howManyTheSameLetters / firstFileLength) * 100, ROUND_RESULT);
+        }
+
+        public IDictionary<int, string> getTheSameElementsPosSecondFile()
+        {
+            return theSameElementsPosSecondFile;
+        }
+
+        public void clearTheSameElementsPosSecondFile()
+        {
+            theSameElementsPosSecondFile.Clear();
         }
     }
 }

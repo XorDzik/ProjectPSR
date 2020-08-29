@@ -42,6 +42,18 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/percentCalculate", ReplyAction="http://tempuri.org/IDiffFilesInterface/percentCalculateResponse")]
         System.Threading.Tasks.Task<double> percentCalculateAsync(double howManyTheSameLetters, double firstFileLength);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/getTheSameElementsPosSecondFile", ReplyAction="http://tempuri.org/IDiffFilesInterface/getTheSameElementsPosSecondFileResponse")]
+        System.Collections.Generic.Dictionary<int, string> getTheSameElementsPosSecondFile();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/getTheSameElementsPosSecondFile", ReplyAction="http://tempuri.org/IDiffFilesInterface/getTheSameElementsPosSecondFileResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> getTheSameElementsPosSecondFileAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFile", ReplyAction="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFileResponse")]
+        void clearTheSameElementsPosSecondFile();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFile", ReplyAction="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFileResponse")]
+        System.Threading.Tasks.Task clearTheSameElementsPosSecondFileAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -101,6 +113,22 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
         
         public System.Threading.Tasks.Task<double> percentCalculateAsync(double howManyTheSameLetters, double firstFileLength) {
             return base.Channel.percentCalculateAsync(howManyTheSameLetters, firstFileLength);
+        }
+        
+        public System.Collections.Generic.Dictionary<int, string> getTheSameElementsPosSecondFile() {
+            return base.Channel.getTheSameElementsPosSecondFile();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> getTheSameElementsPosSecondFileAsync() {
+            return base.Channel.getTheSameElementsPosSecondFileAsync();
+        }
+        
+        public void clearTheSameElementsPosSecondFile() {
+            base.Channel.clearTheSameElementsPosSecondFile();
+        }
+        
+        public System.Threading.Tasks.Task clearTheSameElementsPosSecondFileAsync() {
+            return base.Channel.clearTheSameElementsPosSecondFileAsync();
         }
     }
 }
