@@ -21,6 +21,9 @@ namespace ProjectServiceClient
         List<string> filesToSendList = new List<string>();
         List<string> filesToDisplayList = new List<string>();
         IDictionary<int, string> theSameElementsPos = new Dictionary<int, string>();
+        IDictionary<int, string> theSameElementsPosTmp = new Dictionary<int, string>();
+        int indexTmp = -1;
+        int index = -1;
 
         public Form1()
         {
@@ -39,7 +42,7 @@ namespace ProjectServiceClient
 
             if (openFileDialog.ShowDialog() == DialogResult.OK) 
             {
-                foreach (String file in openFileDialog.FileNames)
+                foreach (string file in openFileDialog.FileNames)
                     filesToSendList.Add(file);
             }
         }
@@ -53,22 +56,18 @@ namespace ProjectServiceClient
             }
 
             if (letterByLetterRadioButton.Checked)
-            {
                 sendDataForCompareLetterByLetter();
-            }
             else if (wordByWordRadioButton.Checked)
-            {
                 sendDataForCompareWordByWord();
-            }
             else
-            {
                 MessageBox.Show("Proszę wybrać metodę porównania", "Błąd!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         public void sendDataForCompareLetterByLetter()
         {
+            int theSameLettersLength = 0;
             int pattern = int.Parse(patternInput.Text);
+
             for (int i = 0; i < filesToSendList.Count() - 1; i++)
             {
                 filesToDisplayList.Add(filesToSendList[i]);
@@ -78,11 +77,19 @@ namespace ProjectServiceClient
                 {
                     if (i < j)
                     {
-                        double probabilityPercent = client.compareFileLetterByLetterAndCalculateProbability(filesToSendList[i], filesToSendList[j], pattern);
+                        theSameElementsPosTmp = client.compareFileLetterByLetter(filesToSendList[i], filesToSendList[j], pattern);
 
+                        foreach (KeyValuePair<int, string> kvp in theSameElementsPosTmp)
+                        {
+                            if (!theSameElementsPos.Contains(kvp))
+                                theSameElementsPos.Add(kvp.Key, kvp.Value);
+                       
+                            theSameLettersLength += kvp.Value.Length;
+                        }
+
+                        double percentProbability = client.percentCalculate(theSameLettersLength, File.ReadAllText(filesToSendList[i]).Length);
                         filesToDisplayList.Add(filesToSendList[j]);
-                        filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1)
-                            + " " + probabilityPercent.ToString() + "%");
+                        filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1) + " " + percentProbability.ToString() + "%");
                     }
                 }
             }
@@ -92,7 +99,6 @@ namespace ProjectServiceClient
         {
             int theSameLettersLength = 0;
             int pattern = int.Parse(patternInput.Text);
-            IDictionary<int, string> theSameElementsPosTmp = new Dictionary<int, string>();
 
             for (int i = 0; i < filesToSendList.Count() - 1; i++)
             {
@@ -107,13 +113,16 @@ namespace ProjectServiceClient
 
                         foreach (KeyValuePair<int, string> kvp in theSameElementsPosTmp)
                         {
-                            theSameElementsPos.Add(kvp.Key, kvp.Value);
+                            if (!theSameElementsPos.Contains(kvp))
+                                theSameElementsPos.Add(kvp.Key, kvp.Value);
+
                             theSameLettersLength += kvp.Value.Length;
                         }
 
                         double percentProbability = client.percentCalculate(theSameLettersLength, File.ReadAllText(filesToSendList[i]).Length);
                         filesToDisplayList.Add(filesToSendList[j]);
                         filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1) + " " + percentProbability.ToString() + "%");
+                        theSameLettersLength = 0;
                     }
                 }
             }
@@ -121,23 +130,27 @@ namespace ProjectServiceClient
 
         public void filesListItemOnClick(object sender, System.EventArgs e)
         {
-            int index = filesList.SelectedIndex;
+            if (index == -1)
+                index = filesList.SelectedIndex;
+            else
+                indexTmp = filesList.SelectedIndex;
 
             if (txtBoxFirstFile.TextLength == 0)
-            {
                 txtBoxFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
-                colorTheSameTextFragments(txtBoxFirstFile, theSameElementsPos);
-
-            }
             else if (txtBoxSecondFile.TextLength == 0)
-            {
-                txtBoxSecondFile.Text = File.ReadAllText(filesToDisplayList[index]);
-                colorTheSameTextFragments(txtBoxSecondFile, client.getTheSameElementsPosSecondFile());
-            }
+                txtBoxSecondFile.Text = File.ReadAllText(filesToDisplayList[indexTmp]);
             else
             {
                 clearTextEditors();
                 txtBoxFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
+            }
+
+            if (index != -1 && indexTmp != -1)
+            {
+                colorTheSameTextFragments(txtBoxFirstFile, theSameElementsPos, filesToDisplayList[indexTmp]);
+                colorTheSameTextFragments(txtBoxSecondFile, theSameElementsPos, filesToDisplayList[indexTmp]);
+                index = -1;
+                indexTmp = -1;
             }
         }
 
@@ -145,8 +158,6 @@ namespace ProjectServiceClient
         {
             clearTextEditors();
             filesToSendList.Clear();
-            theSameElementsPos.Clear();
-            client.clearTheSameElementsPosSecondFile();
         }
 
         private void clearTextEditors()
@@ -155,12 +166,18 @@ namespace ProjectServiceClient
             txtBoxSecondFile.Text = "";
         }
 
-        private void colorTheSameTextFragments(RichTextBox richTextBox, IDictionary<int, string> theSameElementsPos)
+        private void colorTheSameTextFragments(RichTextBox richTextBox, IDictionary<int, string> theSameElementsPos, string secondFileName)
         {
-            foreach (KeyValuePair<int, string> kvp in theSameElementsPos)
+            if (!secondFileName.Contains("0%"))
             {
-                richTextBox.Select(kvp.Key, kvp.Value.Length);
-                richTextBox.SelectionColor = Color.Green;
+                foreach (KeyValuePair<int, string> kvp in theSameElementsPos)
+                {                 
+                    if (txtBoxFirstFile.Text.Contains(kvp.Value) && txtBoxSecondFile.Text.Contains(kvp.Value))
+                    {
+                        richTextBox.Select(kvp.Key, kvp.Value.Length);
+                        richTextBox.SelectionColor = Color.Green;
+                    }
+                }
             }
         }
     }

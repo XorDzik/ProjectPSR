@@ -11,7 +11,7 @@ namespace ProjectServiceLibary
     public interface IDiffFilesInterface
     {
         [OperationContract]
-        int compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern);
+        IDictionary<int, string> compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern);
 
         [OperationContract]
         IDictionary<int, string> compareFileWordByWord(string firstFileName, string secondFileName, int pattern);

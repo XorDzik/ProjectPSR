@@ -14,21 +14,19 @@ namespace ProjectServiceLibary
         IDictionary<int, string> theSameElementsPosSecondFile = new Dictionary<int, string>();
 
 
-        public int compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern)
+        public IDictionary<int, string> compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern)
         {
-            int howManyTheSameLetters = 0;
-
             char[] firstFileContent = File.ReadAllText(firstFileName).ToCharArray();
             char[] secondFileContent = File.ReadAllText(secondFileName).ToCharArray();
 
+            string secondFile = File.ReadAllText(secondFileName);
+
             List<string> firstFileContentList = charTabToList(firstFileContent, pattern);
             List<string> secondFileContentList = charTabToList(secondFileContent, pattern);
-            List<int> list = new List<int>();
+            List<int> indexList = new List<int>();
 
-            var position = new Dictionary<string, string>();
-       
+            IDictionary<int, string> position = new Dictionary<int, string>();
             int firstCounter = 0;
-            int secondCounter = 0;
 
             if (pattern == 1 || pattern == 2)
             {
@@ -39,48 +37,41 @@ namespace ProjectServiceLibary
             {
                 foreach (string secondFileTxt in secondFileContentList)
                 {
-                    secondCounter++;
                     if (firstFileTxt == secondFileTxt)
                     {
                         int lastPositionFirstFile = firstCounter + pattern;
-                        int lastTheSamePositionSecondFile = secondCounter + pattern;
+                        int index = secondFile.IndexOf(secondFileTxt);
 
-                        if (position.ContainsKey(firstCounter.ToString() + ";" + lastPositionFirstFile.ToString()))
-                            firstCounter++;
+                        if (position.Count() == 0)
+                        {
+                            position.Add(firstCounter, firstFileTxt);
+                            theSameElementsPosSecondFile.Add(index, secondFileTxt);
+                            indexList.Add(firstCounter);
+                            break;
+                        }
 
-                        position.Add(firstCounter.ToString() + ";" + lastPositionFirstFile.ToString(), "");
+                        if (!position.ContainsKey(firstCounter))
+                        {
+                            foreach (int tmp in indexList)
+                            {
+                                int lastPosition = tmp + pattern;
+                                int result = lastPositionFirstFile - lastPosition;
+                                if (result > pattern)
+                                {
+                                    position.Add(firstCounter, firstFileTxt);
+                                    if (!theSameElementsPosSecondFile.ContainsKey(index))
+                                        theSameElementsPosSecondFile.Add(index, secondFileTxt);
+                                    break;
+                                }
+                            }
+                            indexList.Add(firstCounter);
+                        }
                     }
                 }
                 firstCounter++;
             }
 
-            string[] keys;
-            foreach (var x in position)
-            {
-                keys = x.Key.Split(';');
-                for (int i = 0; i < keys.Length; i++)
-                {
-                    list.Add(int.Parse(keys[i]));
-                }
-            }
-
-            for (int i = 0; i < list.Count(); i = i + 2)
-            {
-                if (list[i + 1] - list[i] == 1)
-                {
-                    howManyTheSameLetters += 2;
-                }
-                else if (i > 0 && list[i] < list[i - 1])
-                {
-                    howManyTheSameLetters = (list[i + 1] - list[i - 1]) + howManyTheSameLetters;
-                }
-                else
-                {
-                    howManyTheSameLetters = (list[i + 1] - list[i]) + howManyTheSameLetters;
-                }
-            }
-
-            return howManyTheSameLetters;
+            return position;
         }
 
         public IDictionary<int, string> compareFileWordByWord(string firsFileName, string secondFileName, int pattern)
@@ -100,14 +91,16 @@ namespace ProjectServiceLibary
                         secondFileWord += secondFileContentSpit[j] + " ";
 
                     string patternx = @"\b" + secondFileWord + @"\b";
-                    
                     Regex rgx = new Regex(patternx, RegexOptions.IgnoreCase);
+                    
                     foreach (Match match in rgx.Matches(firstFileContent))
-                        theSameElementsPosFirstFile.Add(match.Index, match.Value);
+                        if (!theSameElementsPosFirstFile.ContainsKey(match.Index))
+                            theSameElementsPosFirstFile.Add(match.Index, match.Value);
 
                     if (rgx.IsMatch(firstFileContent))
                         foreach (Match matchSecondFile in rgx.Matches(secondFileContent))
-                            theSameElementsPosSecondFile.Add(matchSecondFile.Index, matchSecondFile.Value);
+                            if (!theSameElementsPosSecondFile.ContainsKey(matchSecondFile.Index))
+                                theSameElementsPosSecondFile.Add(matchSecondFile.Index, matchSecondFile.Value);
                 }
             }
 
@@ -154,7 +147,7 @@ namespace ProjectServiceLibary
         {
             int firstFileLength = File.ReadAllText(firstFileName).Length;
 
-            int howManyTheSameLetters = compareFileLetterByLetter(firstFileName, secondFileName, pattern);
+            int howManyTheSameLetters = 0;
             return percentCalculate(howManyTheSameLetters, firstFileLength);
         }
 

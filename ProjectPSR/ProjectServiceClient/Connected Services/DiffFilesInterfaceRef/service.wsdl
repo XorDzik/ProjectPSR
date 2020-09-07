@@ -86,6 +86,12 @@
   <wsdl:message name="IDiffFilesInterface_clearTheSameElementsPosSecondFile_OutputMessage">
     <wsdl:part name="parameters" element="tns:clearTheSameElementsPosSecondFileResponse" />
   </wsdl:message>
+  <wsdl:message name="IDiffFilesInterface_countTheSameLetters_InputMessage">
+    <wsdl:part name="parameters" element="tns:countTheSameLetters" />
+  </wsdl:message>
+  <wsdl:message name="IDiffFilesInterface_countTheSameLetters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:countTheSameLettersResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDiffFilesInterface">
     <wsdl:operation name="compareFileLetterByLetter">
       <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/compareFileLetterByLetter" message="tns:IDiffFilesInterface_compareFileLetterByLetter_InputMessage" />
@@ -110,6 +116,10 @@
     <wsdl:operation name="clearTheSameElementsPosSecondFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFile" message="tns:IDiffFilesInterface_clearTheSameElementsPosSecondFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFileResponse" message="tns:IDiffFilesInterface_clearTheSameElementsPosSecondFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="countTheSameLetters">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDiffFilesInterface/countTheSameLetters" message="tns:IDiffFilesInterface_countTheSameLetters_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDiffFilesInterface/countTheSameLettersResponse" message="tns:IDiffFilesInterface_countTheSameLetters_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IDiffFilesInterface" type="tns:IDiffFilesInterface">
@@ -170,6 +180,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="countTheSameLetters">
+      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/countTheSameLetters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_IDiffFilesInterface1" type="tns:IDiffFilesInterface">
     <wsp:PolicyReference URI="#NetTcpBinding_IDiffFilesInterface1_policy">
@@ -222,6 +241,15 @@
     </wsdl:operation>
     <wsdl:operation name="clearTheSameElementsPosSecondFile">
       <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="countTheSameLetters">
+      <soap12:operation soapAction="http://tempuri.org/IDiffFilesInterface/countTheSameLetters" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
