@@ -45,7 +45,7 @@
             // 
             // chooseFilesButton
             // 
-            this.chooseFilesButton.Location = new System.Drawing.Point(384, 12);
+            this.chooseFilesButton.Location = new System.Drawing.Point(492, 12);
             this.chooseFilesButton.Name = "chooseFilesButton";
             this.chooseFilesButton.Size = new System.Drawing.Size(176, 40);
             this.chooseFilesButton.TabIndex = 0;
@@ -55,7 +55,7 @@
             // 
             // compareButton
             // 
-            this.compareButton.Location = new System.Drawing.Point(430, 398);
+            this.compareButton.Location = new System.Drawing.Point(538, 398);
             this.compareButton.Name = "compareButton";
             this.compareButton.Size = new System.Drawing.Size(231, 29);
             this.compareButton.TabIndex = 4;
@@ -66,14 +66,14 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(481, 402);
+            this.label1.Location = new System.Drawing.Point(589, 402);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 5;
             // 
             // patternInput
             // 
-            this.patternInput.Location = new System.Drawing.Point(580, 28);
+            this.patternInput.Location = new System.Drawing.Point(688, 28);
             this.patternInput.Multiline = true;
             this.patternInput.Name = "patternInput";
             this.patternInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -83,7 +83,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(624, 11);
+            this.label2.Location = new System.Drawing.Point(732, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 13);
             this.label2.TabIndex = 8;
@@ -102,7 +102,7 @@
             // wordByWordRadioButton
             // 
             this.wordByWordRadioButton.AutoSize = true;
-            this.wordByWordRadioButton.Location = new System.Drawing.Point(806, 34);
+            this.wordByWordRadioButton.Location = new System.Drawing.Point(914, 34);
             this.wordByWordRadioButton.Margin = new System.Windows.Forms.Padding(2);
             this.wordByWordRadioButton.Name = "wordByWordRadioButton";
             this.wordByWordRadioButton.Size = new System.Drawing.Size(162, 17);
@@ -114,7 +114,7 @@
             // letterByLetterRadioButton
             // 
             this.letterByLetterRadioButton.AutoSize = true;
-            this.letterByLetterRadioButton.Location = new System.Drawing.Point(806, 12);
+            this.letterByLetterRadioButton.Location = new System.Drawing.Point(914, 12);
             this.letterByLetterRadioButton.Margin = new System.Windows.Forms.Padding(2);
             this.letterByLetterRadioButton.Name = "letterByLetterRadioButton";
             this.letterByLetterRadioButton.Size = new System.Drawing.Size(154, 17);
@@ -125,7 +125,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(781, 398);
+            this.clearButton.Location = new System.Drawing.Point(889, 398);
             this.clearButton.Margin = new System.Windows.Forms.Padding(2);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(235, 29);
@@ -136,17 +136,17 @@
             // 
             // txtBoxFirstFile
             // 
-            this.txtBoxFirstFile.Location = new System.Drawing.Point(384, 92);
+            this.txtBoxFirstFile.Location = new System.Drawing.Point(383, 92);
             this.txtBoxFirstFile.Name = "txtBoxFirstFile";
-            this.txtBoxFirstFile.Size = new System.Drawing.Size(344, 301);
+            this.txtBoxFirstFile.Size = new System.Drawing.Size(453, 301);
             this.txtBoxFirstFile.TabIndex = 14;
             this.txtBoxFirstFile.Text = "";
             // 
             // txtBoxSecondFile
             // 
-            this.txtBoxSecondFile.Location = new System.Drawing.Point(734, 92);
+            this.txtBoxSecondFile.Location = new System.Drawing.Point(842, 92);
             this.txtBoxSecondFile.Name = "txtBoxSecondFile";
-            this.txtBoxSecondFile.Size = new System.Drawing.Size(333, 301);
+            this.txtBoxSecondFile.Size = new System.Drawing.Size(433, 301);
             this.txtBoxSecondFile.TabIndex = 15;
             this.txtBoxSecondFile.Text = "";
             // 
@@ -154,7 +154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1097, 450);
+            this.ClientSize = new System.Drawing.Size(1294, 450);
             this.Controls.Add(this.txtBoxSecondFile);
             this.Controls.Add(this.txtBoxFirstFile);
             this.Controls.Add(this.clearButton);

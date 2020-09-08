@@ -33,6 +33,7 @@ namespace ProjectServiceClient
             if (filesList.Items.Count > 0)
                 filesList.Items.Clear();
 
+            filesToSendList.Clear();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             
             openFileDialog.Filter = "Text files (*.txt)|*.txt";
@@ -81,14 +82,12 @@ namespace ProjectServiceClient
                         DateTime t3 = DateTime.Now;
                         TimeSpan communicationTime = t3 - t1;
                         
-                        int z = 0;
                         foreach (KeyValuePair<int, string> kvp in theSameElementsPosTmp)
                         {
                             if (!theSameElementsPos.ContainsKey(kvp.Key))
                                 theSameElementsPos.Add(kvp.Key, kvp.Value);
                        
                             theSameLettersLength += kvp.Value.Length;
-                            z++;
                         }
                         double percentProbability = client.percentCalculate(theSameLettersLength, File.ReadAllText(filesToSendList[i]).Length);
 
@@ -102,6 +101,8 @@ namespace ProjectServiceClient
 
                         filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1) + " " + 
                             percentProbability.ToString() + "%; t_c=" + totalTime.TotalMilliseconds.ToString() + "; t_k=" + communicationTime.TotalMilliseconds.ToString());
+
+                        theSameLettersLength = 0;
                     }
                 }
             }
@@ -169,7 +170,7 @@ namespace ProjectServiceClient
             if (txtBoxFirstFile.TextLength > 0 && txtBoxSecondFile.TextLength > 0)
             {
                 colorTheSameTextFragments(txtBoxFirstFile, theSameElementsPos, itemSelectedName);
-                colorTheSameTextFragments(txtBoxSecondFile, theSameElementsPos, itemSelectedName);
+                colorTheSameTextFragments(txtBoxSecondFile, client.getTheSameElementsPosSecondFile(), itemSelectedName);
             }
         }
 
