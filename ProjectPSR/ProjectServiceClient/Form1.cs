@@ -75,23 +75,33 @@ namespace ProjectServiceClient
                 {
                     if (i < j)
                     {
+                        DateTime t1 = DateTime.Now;
                         theSameElementsPosTmp = client.compareFileLetterByLetter(filesToSendList[i], filesToSendList[j], pattern);
-
+                        
+                        DateTime t3 = DateTime.Now;
+                        TimeSpan communicationTime = t3 - t1;
+                        
+                        int z = 0;
                         foreach (KeyValuePair<int, string> kvp in theSameElementsPosTmp)
                         {
                             if (!theSameElementsPos.ContainsKey(kvp.Key))
                                 theSameElementsPos.Add(kvp.Key, kvp.Value);
                        
                             theSameLettersLength += kvp.Value.Length;
+                            z++;
                         }
-
                         double percentProbability = client.percentCalculate(theSameLettersLength, File.ReadAllText(filesToSendList[i]).Length);
 
                         if (percentProbability > 100)
                             percentProbability = 100;
 
                         filesToDisplayList.Add(filesToSendList[j]);
-                        filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1) + " " + percentProbability.ToString() + "%");
+
+                        DateTime t2 = DateTime.Now;
+                        TimeSpan totalTime = t2.Subtract(t1);
+
+                        filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1) + " " + 
+                            percentProbability.ToString() + "%; t_c=" + totalTime.TotalMilliseconds.ToString() + "; t_k=" + communicationTime.TotalMilliseconds.ToString());
                     }
                 }
             }
@@ -111,7 +121,11 @@ namespace ProjectServiceClient
                 {
                     if (i < j)
                     {
+                        DateTime t1 = DateTime.Now;
                         theSameElementsPosTmp = client.compareFileWordByWord(filesToSendList[i], filesToSendList[j], pattern);
+
+                        DateTime t3 = DateTime.Now;
+                        TimeSpan communicationTime = t3 - t1;
 
                         foreach (KeyValuePair<int, string> kvp in theSameElementsPosTmp)
                         {
@@ -126,7 +140,12 @@ namespace ProjectServiceClient
                             percentProbability = 100;
 
                         filesToDisplayList.Add(filesToSendList[j]);
-                        filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1) + " " + percentProbability.ToString() + "%");
+
+                        DateTime t2 = DateTime.Now;
+                        TimeSpan totalTime = t2.Subtract(t1);
+
+                        filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1) + 
+                            " " + percentProbability.ToString() + "%; t_c=" + totalTime.TotalMilliseconds.ToString() + "; t_k=" + communicationTime.TotalMilliseconds.ToString());
                         theSameLettersLength = 0;
                     }
                 }
