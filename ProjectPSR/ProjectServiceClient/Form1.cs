@@ -22,8 +22,6 @@ namespace ProjectServiceClient
         List<string> filesToDisplayList = new List<string>();
         IDictionary<int, string> theSameElementsPos = new Dictionary<int, string>();
         IDictionary<int, string> theSameElementsPosTmp = new Dictionary<int, string>();
-        int indexTmp = -1;
-        int index = -1;
 
         public Form1()
         {
@@ -81,13 +79,17 @@ namespace ProjectServiceClient
 
                         foreach (KeyValuePair<int, string> kvp in theSameElementsPosTmp)
                         {
-                            if (!theSameElementsPos.Contains(kvp))
+                            if (!theSameElementsPos.ContainsKey(kvp.Key))
                                 theSameElementsPos.Add(kvp.Key, kvp.Value);
                        
                             theSameLettersLength += kvp.Value.Length;
                         }
 
                         double percentProbability = client.percentCalculate(theSameLettersLength, File.ReadAllText(filesToSendList[i]).Length);
+
+                        if (percentProbability > 100)
+                            percentProbability = 100;
+
                         filesToDisplayList.Add(filesToSendList[j]);
                         filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1) + " " + percentProbability.ToString() + "%");
                     }
@@ -113,13 +115,16 @@ namespace ProjectServiceClient
 
                         foreach (KeyValuePair<int, string> kvp in theSameElementsPosTmp)
                         {
-                            if (!theSameElementsPos.Contains(kvp))
+                            if (!theSameElementsPos.ContainsKey(kvp.Key))
                                 theSameElementsPos.Add(kvp.Key, kvp.Value);
 
                             theSameLettersLength += kvp.Value.Length;
                         }
 
                         double percentProbability = client.percentCalculate(theSameLettersLength, File.ReadAllText(filesToSendList[i]).Length);
+                        if (percentProbability > 100)
+                            percentProbability = 100;
+
                         filesToDisplayList.Add(filesToSendList[j]);
                         filesList.Items.Add("   |" + filesToSendList[j].Substring(filesToSendList[j].LastIndexOf('\\') + 1) + " " + percentProbability.ToString() + "%");
                         theSameLettersLength = 0;
@@ -130,27 +135,22 @@ namespace ProjectServiceClient
 
         public void filesListItemOnClick(object sender, System.EventArgs e)
         {
-            if (index == -1)
-                index = filesList.SelectedIndex;
-            else
-                indexTmp = filesList.SelectedIndex;
+            Object itemSelectedName = filesList.SelectedItem;
 
             if (txtBoxFirstFile.TextLength == 0)
-                txtBoxFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
+                txtBoxFirstFile.Text = File.ReadAllText(filesToDisplayList[filesList.SelectedIndex]);
             else if (txtBoxSecondFile.TextLength == 0)
-                txtBoxSecondFile.Text = File.ReadAllText(filesToDisplayList[indexTmp]);
+                txtBoxSecondFile.Text = File.ReadAllText(filesToDisplayList[filesList.SelectedIndex]);
             else
             {
                 clearTextEditors();
-                txtBoxFirstFile.Text = File.ReadAllText(filesToDisplayList[index]);
+                txtBoxFirstFile.Text = File.ReadAllText(filesToDisplayList[filesList.SelectedIndex]);
             }
 
-            if (index != -1 && indexTmp != -1)
+            if (txtBoxFirstFile.TextLength > 0 && txtBoxSecondFile.TextLength > 0)
             {
-                colorTheSameTextFragments(txtBoxFirstFile, theSameElementsPos, filesToDisplayList[indexTmp]);
-                colorTheSameTextFragments(txtBoxSecondFile, theSameElementsPos, filesToDisplayList[indexTmp]);
-                index = -1;
-                indexTmp = -1;
+                colorTheSameTextFragments(txtBoxFirstFile, theSameElementsPos, itemSelectedName);
+                colorTheSameTextFragments(txtBoxSecondFile, theSameElementsPos, itemSelectedName);
             }
         }
 
@@ -166,9 +166,16 @@ namespace ProjectServiceClient
             txtBoxSecondFile.Text = "";
         }
 
-        private void colorTheSameTextFragments(RichTextBox richTextBox, IDictionary<int, string> theSameElementsPos, string secondFileName)
+        private void colorTheSameTextFragments(RichTextBox richTextBox, IDictionary<int, string> theSameElementsPos, Object itemSelectedName)
         {
-            if (!secondFileName.Contains("0%"))
+            if (itemSelectedName.ToString().Contains("100%"))
+            {
+                richTextBox.SelectAll();
+                richTextBox.SelectionColor = Color.Green;
+                return;
+            }
+
+            if (!itemSelectedName.ToString().Contains("0%"))
             {
                 foreach (KeyValuePair<int, string> kvp in theSameElementsPos)
                 {                 

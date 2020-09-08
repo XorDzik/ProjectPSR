@@ -44,9 +44,15 @@ namespace ProjectServiceLibary
 
                         if (position.Count() == 0)
                         {
-                            position.Add(firstCounter, firstFileTxt);
-                            theSameElementsPosSecondFile.Add(index, secondFileTxt);
-                            indexList.Add(firstCounter);
+                            if (!position.ContainsKey(firstCounter))
+                                position.Add(firstCounter, firstFileTxt);
+
+                            if (!theSameElementsPosSecondFile.ContainsKey(index))
+                                theSameElementsPosSecondFile.Add(index, secondFileTxt);
+
+                            if (!indexList.Contains(firstCounter))
+                                indexList.Add(firstCounter);
+                            
                             break;
                         }
 
@@ -64,7 +70,9 @@ namespace ProjectServiceLibary
                                     break;
                                 }
                             }
-                            indexList.Add(firstCounter);
+
+                            if (!indexList.Contains(firstCounter))
+                                indexList.Add(firstCounter);
                         }
                     }
                 }

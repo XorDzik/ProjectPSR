@@ -45,21 +45,21 @@
             // 
             // chooseFilesButton
             // 
-            this.chooseFilesButton.Location = new System.Drawing.Point(227, 12);
+            this.chooseFilesButton.Location = new System.Drawing.Point(208, 12);
             this.chooseFilesButton.Name = "chooseFilesButton";
-            this.chooseFilesButton.Size = new System.Drawing.Size(130, 45);
+            this.chooseFilesButton.Size = new System.Drawing.Size(176, 40);
             this.chooseFilesButton.TabIndex = 0;
-            this.chooseFilesButton.Text = "Choose files";
+            this.chooseFilesButton.Text = "Wybierz pliki";
             this.chooseFilesButton.UseVisualStyleBackColor = true;
             this.chooseFilesButton.Click += new System.EventHandler(this.chooseFilesButtonOnClick);
             // 
             // compareButton
             // 
-            this.compareButton.Location = new System.Drawing.Point(227, 399);
+            this.compareButton.Location = new System.Drawing.Point(254, 398);
             this.compareButton.Name = "compareButton";
-            this.compareButton.Size = new System.Drawing.Size(187, 29);
+            this.compareButton.Size = new System.Drawing.Size(231, 29);
             this.compareButton.TabIndex = 4;
-            this.compareButton.Text = "Compare";
+            this.compareButton.Text = "Porównaj";
             this.compareButton.UseVisualStyleBackColor = true;
             this.compareButton.Click += new System.EventHandler(this.compareButtonOnClick);
             // 
@@ -95,7 +95,7 @@
             this.filesList.Location = new System.Drawing.Point(9, 12);
             this.filesList.Margin = new System.Windows.Forms.Padding(2);
             this.filesList.Name = "filesList";
-            this.filesList.Size = new System.Drawing.Size(143, 381);
+            this.filesList.Size = new System.Drawing.Size(194, 381);
             this.filesList.TabIndex = 10;
             this.filesList.SelectedIndexChanged += new System.EventHandler(this.filesListItemOnClick);
             // 
@@ -125,28 +125,28 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(596, 398);
+            this.clearButton.Location = new System.Drawing.Point(605, 398);
             this.clearButton.Margin = new System.Windows.Forms.Padding(2);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(188, 28);
+            this.clearButton.Size = new System.Drawing.Size(235, 29);
             this.clearButton.TabIndex = 13;
-            this.clearButton.Text = "Clear";
+            this.clearButton.Text = "Wyczyść";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButtonOnClick);
             // 
             // txtBoxFirstFile
             // 
-            this.txtBoxFirstFile.Location = new System.Drawing.Point(157, 92);
+            this.txtBoxFirstFile.Location = new System.Drawing.Point(208, 92);
             this.txtBoxFirstFile.Name = "txtBoxFirstFile";
-            this.txtBoxFirstFile.Size = new System.Drawing.Size(358, 301);
+            this.txtBoxFirstFile.Size = new System.Drawing.Size(344, 301);
             this.txtBoxFirstFile.TabIndex = 14;
             this.txtBoxFirstFile.Text = "";
             // 
             // txtBoxSecondFile
             // 
-            this.txtBoxSecondFile.Location = new System.Drawing.Point(521, 92);
+            this.txtBoxSecondFile.Location = new System.Drawing.Point(558, 92);
             this.txtBoxSecondFile.Name = "txtBoxSecondFile";
-            this.txtBoxSecondFile.Size = new System.Drawing.Size(370, 301);
+            this.txtBoxSecondFile.Size = new System.Drawing.Size(333, 301);
             this.txtBoxSecondFile.TabIndex = 15;
             this.txtBoxSecondFile.Text = "";
             // 

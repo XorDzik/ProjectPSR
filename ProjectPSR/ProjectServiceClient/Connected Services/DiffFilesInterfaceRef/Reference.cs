@@ -54,12 +54,6 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFile", ReplyAction="http://tempuri.org/IDiffFilesInterface/clearTheSameElementsPosSecondFileResponse")]
         System.Threading.Tasks.Task clearTheSameElementsPosSecondFileAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/countTheSameLetters", ReplyAction="http://tempuri.org/IDiffFilesInterface/countTheSameLettersResponse")]
-        int countTheSameLetters(System.Collections.Generic.Dictionary<int, string> theSameElements);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDiffFilesInterface/countTheSameLetters", ReplyAction="http://tempuri.org/IDiffFilesInterface/countTheSameLettersResponse")]
-        System.Threading.Tasks.Task<int> countTheSameLettersAsync(System.Collections.Generic.Dictionary<int, string> theSameElements);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -135,14 +129,6 @@ namespace ProjectServiceClient.DiffFilesInterfaceRef {
         
         public System.Threading.Tasks.Task clearTheSameElementsPosSecondFileAsync() {
             return base.Channel.clearTheSameElementsPosSecondFileAsync();
-        }
-        
-        public int countTheSameLetters(System.Collections.Generic.Dictionary<int, string> theSameElements) {
-            return base.Channel.countTheSameLetters(theSameElements);
-        }
-        
-        public System.Threading.Tasks.Task<int> countTheSameLettersAsync(System.Collections.Generic.Dictionary<int, string> theSameElements) {
-            return base.Channel.countTheSameLettersAsync(theSameElements);
         }
     }
 }

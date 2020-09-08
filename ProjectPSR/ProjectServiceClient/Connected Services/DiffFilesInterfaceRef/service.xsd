@@ -86,18 +86,4 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="countTheSameLetters">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="theSameElements" nillable="true" type="q4:ArrayOfKeyValueOfintstring" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="countTheSameLettersResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="countTheSameLettersResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
 </xs:schema>
