@@ -77,7 +77,11 @@ namespace ProjectServiceClient
                     if (i < j)
                     {
                         DateTime t1 = DateTime.Now;
-                        theSameElementsPosTmp = client.compareFileLetterByLetter(filesToSendList[i], filesToSendList[j], pattern);
+                        char[] firstFileContent = File.ReadAllText(filesToSendList[i]).ToCharArray();
+                        char[] secondFileContent = File.ReadAllText(filesToSendList[j]).ToCharArray();
+                        string secondFile = File.ReadAllText(filesToSendList[j]);
+
+                        theSameElementsPosTmp = client.compareFileLetterByLetter(firstFileContent, secondFileContent, secondFile, pattern);
                         
                         DateTime t3 = DateTime.Now;
                         TimeSpan communicationTime = t3 - t1;
@@ -123,7 +127,10 @@ namespace ProjectServiceClient
                     if (i < j)
                     {
                         DateTime t1 = DateTime.Now;
-                        theSameElementsPosTmp = client.compareFileWordByWord(filesToSendList[i], filesToSendList[j], pattern);
+                        string firstFileContent = File.ReadAllText(filesToSendList[i]);
+                        string secondFileContent = File.ReadAllText(filesToSendList[j]);
+
+                        theSameElementsPosTmp = client.compareFileWordByWord(firstFileContent, secondFileContent, pattern);
 
                         DateTime t3 = DateTime.Now;
                         TimeSpan communicationTime = t3 - t1;

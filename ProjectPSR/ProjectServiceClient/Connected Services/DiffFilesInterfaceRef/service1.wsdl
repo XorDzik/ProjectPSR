@@ -232,18 +232,18 @@
   </wsdl:binding>
   <wsdl:service name="DiffFilesInterfaceImpl">
     <wsdl:port name="NetTcpBinding_IDiffFilesInterface" binding="tns:NetTcpBinding_IDiffFilesInterface">
-      <soap12:address location="net.tcp://192.168.8.100:8080/DiffFilesInterfaceImpl" />
+      <soap12:address location="net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.8.100:8080/DiffFilesInterfaceImpl</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-5AHI0I2\piotr</Upn>
+          <Upn>DESKTOP-5BNAJM2\Adrian</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IDiffFilesInterface1" binding="tns:NetTcpBinding_IDiffFilesInterface1">
-      <soap12:address location="net.tcp://192.168.8.100:8080/DiffFilesInterfaceImpl/DiffFilesService" />
+      <soap12:address location="net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl/DiffFilesService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.8.100:8080/DiffFilesInterfaceImpl/DiffFilesService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.194.135:8080/DiffFilesInterfaceImpl/DiffFilesService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

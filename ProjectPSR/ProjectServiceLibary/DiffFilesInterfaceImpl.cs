@@ -7,19 +7,15 @@ using System.Text.RegularExpressions;
 
 namespace ProjectServiceLibary
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Single, IncludeExceptionDetailInFaults = true)]
     public class DiffFilesInterfaceImpl : IDiffFilesInterface
     {
         public const int ROUND_RESULT = 2;
         IDictionary<int, string> theSameElementsPosSecondFile = new Dictionary<int, string>();
 
 
-        public IDictionary<int, string> compareFileLetterByLetter(string firstFileName, string secondFileName, int pattern)
+        public IDictionary<int, string> compareFileLetterByLetter(char[] firstFileContent, char[] secondFileContent, string secondFile, int pattern)
         {
-            char[] firstFileContent = File.ReadAllText(firstFileName).ToCharArray();
-            char[] secondFileContent = File.ReadAllText(secondFileName).ToCharArray();
-
-            string secondFile = File.ReadAllText(secondFileName);
 
             List<string> firstFileContentList = charTabToList(firstFileContent, pattern);
             List<string> secondFileContentList = charTabToList(secondFileContent, pattern);
@@ -82,13 +78,12 @@ namespace ProjectServiceLibary
             return position;
         }
 
-        public IDictionary<int, string> compareFileWordByWord(string firsFileName, string secondFileName, int pattern)
+        public IDictionary<int, string> compareFileWordByWord(string firstFileContent, string secondFileContent, int pattern)
         {
             char[] delimiterChars = { ' ' };
             IDictionary<int, string> theSameElementsPosFirstFile = new Dictionary<int, string>();
 
-            string firstFileContent = File.ReadAllText(firsFileName);
-            string secondFileContent = File.ReadAllText(secondFileName);
+
             string[] secondFileContentSpit = secondFileContent.Split(delimiterChars);
             int newLineFirstText = 0;
             int newLineSecondText = 0;
