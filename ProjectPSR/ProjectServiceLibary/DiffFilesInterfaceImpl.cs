@@ -84,12 +84,15 @@ namespace ProjectServiceLibary
 
         public IDictionary<int, string> compareFileWordByWord(string firsFileName, string secondFileName, int pattern)
         {
+            char[] delimiterChars = { ' ' };
             IDictionary<int, string> theSameElementsPosFirstFile = new Dictionary<int, string>();
 
             string firstFileContent = File.ReadAllText(firsFileName);
             string secondFileContent = File.ReadAllText(secondFileName);
-            string[] secondFileContentSpit = secondFileContent.Split(' ');
-           
+            string[] secondFileContentSpit = secondFileContent.Split(delimiterChars);
+            int newLineFirstText = 0;
+            int newLineSecondText = 0;
+
             for (int i = 0; i < secondFileContentSpit.Length; i += pattern)
             {
                 string secondFileWord = "";
@@ -99,17 +102,56 @@ namespace ProjectServiceLibary
                         secondFileWord += secondFileContentSpit[j] + " ";
 
                     string patternx = @"\b" + secondFileWord + @"\b";
-                    Regex rgx = new Regex(patternx, RegexOptions.IgnoreCase);
-                    
+
+                    Regex rgx;
+                    if (secondFileWord.Contains("\r\n"))
+                        rgx = new Regex(patternx, RegexOptions.Singleline); 
+                    else
+                        rgx = new Regex(patternx, RegexOptions.IgnoreCase);
+
                     if (rgx.IsMatch(secondFileContent))
                         foreach (Match match in rgx.Matches(firstFileContent))
                             if (!theSameElementsPosFirstFile.ContainsKey(match.Index))
-                                theSameElementsPosFirstFile.Add(match.Index, match.Value);
+                                if (secondFileWord.Contains("\r\n"))
+                                {
+                                    string[] wordToAddTmp = secondFileWord.Split('\r');
+                                    string wordToAdd = "";
+                                    for (int tabIndex = 0; tabIndex < wordToAddTmp.Length; tabIndex++)
+                                        wordToAdd += wordToAddTmp[tabIndex];
+
+                                    theSameElementsPosFirstFile.Add(match.Index, wordToAdd);
+                                    newLineFirstText++;
+                                }
+                                else
+                                {
+                                    if (newLineFirstText > 0)
+                                        theSameElementsPosFirstFile.Add(match.Index - newLineFirstText, match.Value);
+                                    else
+                                        theSameElementsPosFirstFile.Add(match.Index, match.Value);
+                                }
+
 
                     if (rgx.IsMatch(firstFileContent))
                         foreach (Match matchSecondFile in rgx.Matches(secondFileContent))
                             if (!theSameElementsPosSecondFile.ContainsKey(matchSecondFile.Index))
-                                theSameElementsPosSecondFile.Add(matchSecondFile.Index, matchSecondFile.Value);
+                                if (secondFileWord.Contains("\r\n"))
+                                {
+                                    string[] wordToAddTmp = secondFileWord.Split('\r');
+                                    string wordToAdd = "";
+                                    for (int tabIndex = 0; tabIndex < wordToAddTmp.Length; tabIndex++)
+                                        wordToAdd += wordToAddTmp[tabIndex];
+
+                                    theSameElementsPosSecondFile.Add(matchSecondFile.Index, wordToAdd);
+                                    newLineSecondText++;
+                                }
+                                else
+                                {
+                                    if (newLineSecondText > 0)
+                                        theSameElementsPosSecondFile.Add(matchSecondFile.Index - newLineSecondText, matchSecondFile.Value);
+                                    else
+                                        theSameElementsPosSecondFile.Add(matchSecondFile.Index, matchSecondFile.Value);
+                                }
+
                 }
 
                 if (i + pattern == secondFileContentSpit.Length)
@@ -123,10 +165,22 @@ namespace ProjectServiceLibary
                     if (firstFileContent.Contains(secondFileWordAfter) && secondFileContent.Contains(secondFileWordAfter))
                     {
                         if (!theSameElementsPosFirstFile.ContainsKey(firstFileContent.Length - secondFileWordAfter.Length))
-                            theSameElementsPosFirstFile.Add(firstFileContent.Length - secondFileWordAfter.Length, secondFileWordAfter);
+                        {
+                            if (newLineFirstText > 0)
+                                theSameElementsPosFirstFile.Add(firstFileContent.Length - secondFileWordAfter.Length - newLineFirstText, secondFileWordAfter);
+                            else
+                                theSameElementsPosFirstFile.Add(firstFileContent.Length - secondFileWordAfter.Length, secondFileWordAfter);
+                        }
+
 
                         if (!theSameElementsPosSecondFile.ContainsKey(secondFileContent.Length - secondFileWordAfter.Length))
-                            theSameElementsPosSecondFile.Add(secondFileContent.Length - secondFileWordAfter.Length, secondFileWordAfter);
+                        {
+                            if (newLineSecondText > 0)
+                                theSameElementsPosSecondFile.Add(secondFileContent.Length - secondFileWordAfter.Length - newLineSecondText, secondFileWordAfter);
+                            else
+                                theSameElementsPosSecondFile.Add(secondFileContent.Length - secondFileWordAfter.Length, secondFileWordAfter);
+                        }
+
                     }
                         
                 }
@@ -143,10 +197,20 @@ namespace ProjectServiceLibary
                     if (firstFileContent.Contains(secondFileWordAfter) && secondFileContent.Contains(secondFileWordAfter))
                     {
                         if (!theSameElementsPosFirstFile.ContainsKey(firstFileContent.Length - secondFileWordAfter.Length))
-                            theSameElementsPosFirstFile.Add(firstFileContent.Length - secondFileWordAfter.Length, secondFileWordAfter);
+                        {
+                            if (newLineFirstText > 0)
+                                theSameElementsPosFirstFile.Add(firstFileContent.Length - secondFileWordAfter.Length - newLineFirstText, secondFileWordAfter);
+                            else
+                                theSameElementsPosFirstFile.Add(firstFileContent.Length - secondFileWordAfter.Length, secondFileWordAfter);
+                        }
 
                         if (!theSameElementsPosSecondFile.ContainsKey(secondFileContent.Length - secondFileWordAfter.Length))
-                            theSameElementsPosSecondFile.Add(secondFileContent.Length - secondFileWordAfter.Length, secondFileWordAfter);
+                        {
+                            if (newLineSecondText > 0)
+                                theSameElementsPosSecondFile.Add(secondFileContent.Length - secondFileWordAfter.Length - newLineSecondText, secondFileWordAfter);
+                            else
+                                theSameElementsPosSecondFile.Add(secondFileContent.Length - secondFileWordAfter.Length, secondFileWordAfter);
+                        }
                     }
                 }
             }
